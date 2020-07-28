@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 
 module.exports = {
 	mode: 'development',
@@ -34,7 +36,8 @@ module.exports = {
 	},
 		plugins: [
 			new HtmlWebpackPlugin({
-				template: './index.html' // 인자로 템플릿 파일
-			})
+				template: './index.html', // 인자로 템플릿 파일
+			}),
+			new CleanWebpackPlugin()
 		]
-}
+};
