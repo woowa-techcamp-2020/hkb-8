@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
@@ -13,21 +14,27 @@ module.exports = {
 	module: { // 로더들은 module의 rules에 추가하면 읽힌다.
 		rules: [
 			{
-				test: /\.css$/,  // test : 로더가 처리해야할 파일들의 패턴(정규표현식)
+				test: /\.(sa|sc|c)ss$/,  // test : 로더가 처리해야할 파일들의 패턴(정규표현식)
 				use: [
 					'style-loader',
-					'css-loader'
+					'css-loader',
+					'sass-loader'
 				]
 			},
 			{
-				test:/\.(png|jpg|gif|svg)$/,
-				loader:'url-loader',
-					options: {
-					publicPath:'./dist/', // dist에 떨궈지기
-					name:'[name].[ext]?[hash]', // 결과 파일의 이름
-						limit: 20000, // 용량 2kb미만은 url-loader 그 이상은 file-loader
-					}
-			}
+				test: /\.(png|jpg|gif|svg)$/,
+				loader: 'url-loader',
+				options: {
+					publicPath: './dist/', // dist에 떨궈지기
+					name: '[name].[ext]?[hash]', // 결과 파일의 이름
+					limit: 20000, // 용량 2kb미만은 url-loader 그 이상은 file-loader
+				}
+			},
 		]
-	}
+	},
+		plugins: [
+			new HtmlWebpackPlugin({
+				template: './index.html' // 인자로 템플릿 파일
+			})
+		]
 }

@@ -1,6 +1,6 @@
 import * as math from './math.js'
 import { sum } from './math.js'
-import './app.css';
+import './app.scss';
 import bori from './bori.jpg';
 
 document.addEventListener('DOMContentLoaded', () => {
