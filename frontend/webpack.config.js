@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
+	devtool: 'cheap-eval-source-map',
 	entry: {
 		main: './src/app.js' // 이 파일을 기준으로 시작점 설정,
 		// main2: './src/app2.js'
@@ -15,6 +16,11 @@ module.exports = {
 	},
 	module: { // 로더들은 module의 rules에 추가하면 읽힌다.
 		rules: [
+			{
+				test: /\.js$/,
+				use: "babel-loader",
+				exclude: /node_modules/,
+			},
 			{
 				test: /\.(sa|sc|c)ss$/,  // test : 로더가 처리해야할 파일들의 패턴(정규표현식)
 				use: [
