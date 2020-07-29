@@ -1,0 +1,73 @@
+.list-tap-section {
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+
+  .list-tap-wrap {
+    display: flex;
+    flex-direction: row;
+    width:40%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightgray;
+    border-radius: 30px;
+    padding: 15px;
+
+    .list-tap-history-wrap {
+      .list-tap-history {
+        font-size: 25px;
+        padding: 5px 120px;
+        background-color: white;
+        border-radius: 20px;
+  }
+    }
+
+.list-tap-calender-wrap {
+  .list-tap-calender {
+    font-size: 25px;
+    padding: 5px 120px;
+    background-color: white;
+    border-radius: 20px;
+  }
+}
+
+.list-tap-statistics-wrap {
+  .list-tap-statistics {
+    font-size: 25px;
+    padding: 5px 120px;
+    background-color: white;
+    border-radius: 20px;
+  }
+}
+
+}
+}
+
+.month-tap-section {
+width:100%;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 30px;
+
+.month-tap-wrap {
+display: flex;
+flex-direction: row;
+width:40%;
+justify-content: center;
+
+.left-arrow {
+  font-size: 30px;
+  margin-right: 10px;
+}
+.selected-month {
+  font-size: 30px;
+}
+.right-arrow {
+  font-size: 30px;
+  margin-left: 10px;
+}
+}
+}

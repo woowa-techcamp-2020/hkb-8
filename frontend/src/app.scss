@@ -1,2 +1,9 @@
 @import './src/utils/reset.scss';
 @import './src/component/header/header.scss';
+
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
