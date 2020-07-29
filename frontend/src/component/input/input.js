@@ -1,10 +1,10 @@
-import './header.scss';
+import './input.scss';
 import { createEl } from '../../utils/createElement';
 import { createChildren } from '../../utils/createChildren';
-import { clickPaymentManageBtn } from './headerHandler';
+// import { func } from './headerHandler';
 
 
-export class HeaderSection {
+export class Input {
     constructor() {
         this.headerSection = createEl('header','header-section', '', {});
 

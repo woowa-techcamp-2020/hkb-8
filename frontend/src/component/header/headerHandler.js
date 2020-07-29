@@ -1,3 +1,3 @@
-export const func = function(e) {
+export const clickPaymentManageBtn = function(e) {
     console.log(e.target);
 };
