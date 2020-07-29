@@ -1,5 +1,6 @@
 const CREATE_DB = `CREATE DATABASE IF NOT EXISTS account_book;`;
 
+// ================================== member_tb =========================
 const CREATE_MEMBER_TB = `
     CREATE TABLE IF NOT EXISTS member_tb (
         no INT NOT NULL AUTO_INCREMENT,
@@ -15,6 +16,8 @@ const INSERT_MEMBER_TB = `INSERT INTO member_tb(email, password, salt) VALUES(?,
 
 const INSERT_MEMBER_TB_DELETED = `INSERT INTO member_tb(email, password, salt, is_deleted) VALUES(?, ?, ?, true);`;
 
+const SELECT_MEMBER_TB_EMAIL_PASSWORD = `select * from member_tb where email = ? and password = ?;`;
+// ================================== payment_method_tb =========================
 const CREATE_PAYMENT_METHOD_TB = `
     CREATE TABLE IF NOT EXISTS payment_method_tb (
         no INT NOT NULL AUTO_INCREMENT,
@@ -28,6 +31,7 @@ const CREATE_PAYMENT_METHOD_TB = `
 
 const INSERT_PAYMENT_METHOD_TB = `INSERT INTO payment_method_tb(name, member_no) VALUES(?, ?);`;
 
+// ================================== category_tb =========================
 const CREATE_CATEGORY_TB = `
     CREATE TABLE IF NOT EXISTS category_tb (
         no INT NOT NULL AUTO_INCREMENT,
@@ -40,6 +44,7 @@ const CREATE_CATEGORY_TB = `
 
 const INSERT_CATEGORY_TB = `INSERT INTO category_tb(type, name) VALUES(?, ?)`;
 
+// ================================== record_tb =========================
 const CREATE_RECORD_TB = `
     CREATE TABLE IF NOT EXISTS record_tb (
         no INT NOT NULL AUTO_INCREMENT,
@@ -95,6 +100,7 @@ export default {
     CREATE_MEMBER_TB,
     INSERT_MEMBER_TB,
     INSERT_MEMBER_TB_DELETED,
+    SELECT_MEMBER_TB_EMAIL_PASSWORD,
     CREATE_PAYMENT_METHOD_TB,
     INSERT_PAYMENT_METHOD_TB,
     CREATE_CATEGORY_TB,
