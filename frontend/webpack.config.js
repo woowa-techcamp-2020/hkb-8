@@ -1,15 +1,15 @@
 const path = require('path',);
 const HtmlWebpackPlugin = require('html-webpack-plugin',);
 const { CleanWebpackPlugin, } = require('clean-webpack-plugin',);
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
 module.exports = {
     mode: 'development',
     devtool: 'cheap-eval-source-map',
-    entry: {
-        main: './src/app.js',
-    }, output: {
-        path: path.resolve('./dist',),
+    entry: ['./src/app.js','./src/app.scss'],
+    output: {
+        path: path.resolve('./dist'),
         filename: '[name].js',
     },
     module: {
@@ -22,7 +22,7 @@ module.exports = {
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     'sass-loader',
                 ],
@@ -41,7 +41,10 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html',
-        },),
+        }),
         new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename:'[name].css',
+        })
     ],
 };

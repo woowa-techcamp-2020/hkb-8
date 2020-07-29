@@ -1,11 +1,8 @@
-// import * as math from './math.js'
-// import { sum } from './math.js'
-import {createEl,} from './utils/createElement';
-import './app.scss';
+import { header } from './component/header/header';
 
 document.addEventListener('DOMContentLoaded', () => {
     const targetEl = document.querySelector('#app',);
-    // createEl('.div','김영지', 'class-name', {style:'color:red'});
-    // targetEl.appendChild(createEl());
-},
-);
+    header.createHeader();
+    targetEl.appendChild(header.render());
+});
+
