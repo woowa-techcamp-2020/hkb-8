@@ -9,12 +9,12 @@ export const createEl = function(tagType, className, text, attrObj) {
     }
 
     Object.entries(attrObj).forEach(([key, value]) => {
-        console.log(key, value);
+        // console.log(key, value);
         if(key === 'style') {
-            console.log(value);
             elementNode.style.cssText = value;
         } else {
-            elementNode.setAttribute(key, value);
+            elementNode[key] = value;
+            // elementNode.setAttribute(key, value);
         }
     });
     return elementNode;

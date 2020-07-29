@@ -1,9 +1,10 @@
 import './header.scss';
-import '../../utils/createElement';
 import { createEl } from '../../utils/createElement';
 import { createChildren } from '../../utils/createChildren';
+import { func } from './headerHandler';
 
-class HeaderSection {
+
+export class HeaderSection {
     constructor() {
         this.headerSection = createEl('header','header-section', '', {});
 
@@ -27,11 +28,9 @@ class HeaderSection {
     createHeader() {
         this.headerLeft = createEl('div','header-left', '', {});
         this.headerMiddle = createEl('div','header-middle', '우 아 한 가 계 부', {});
-        this.headerRight = createEl('div','header-right', '결제 수단 관리', {});
+        this.headerRight = createEl('div','header-right', '결제 수단 관리', {onclick:func});
 
         createChildren(this.headerSection, this.headerLeft, this.headerMiddle, this.headerRight);
     }
 }
 
-
-export const header = new HeaderSection();
