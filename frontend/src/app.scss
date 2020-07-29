@@ -1,13 +1,2 @@
-body {
-    //background-image: url(woowa.png);
-    background-color: antiquewhite;
-}
-
-.main {
-    font-size: 60px;
-    color: blue;
-    .sub {
-        font-size: 20px;
-        color: blue;
-    }
-}
+@import './src/utils/reset.scss';
+@import './src/component/header/header.scss';

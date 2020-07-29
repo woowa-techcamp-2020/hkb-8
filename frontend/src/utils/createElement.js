@@ -1,27 +1,23 @@
-export const createEl = function(tagType, text, name, attrObj,) {
+export const createEl = function(tagType, className, text, attrObj) {
+
     const elementNode = document.createElement(tagType,);
-    const textNode = document.createTextNode(text,);
-    elementNode.appendChild(textNode,);
-    elementNode.setAttribute('className', name);
+    elementNode.setAttribute('class', className);
 
-    // if(Object.keys(attrObj).length > 0) {
-    //     for (const [key, value] of Object.entries(attrObj,)) {
-    //         elementNode.setAttribute(key, value);
-    //         console.log(key, value);
-    //     }
-    // }
+    if(text.trim().length > 0) {
+        const textNode = document.createTextNode(text);
+        elementNode.appendChild(textNode);
+    }
 
-    // Object.entries(attrObj).forEach((val) => {
-    //     elementNode.setAttribute(val[0], val[1]);
-    //     // console.log(val[0], val[1]);
-    // });
-
-
-    // for(let n in attrObj){
-    //     elementNode.setAttribute(n, attrObj[n]);
-    // 	    // console.log(n, attrObj[n]);
-    // }
-
-
+    Object.entries(attrObj).forEach(([key, value]) => {
+        console.log(key, value);
+        if(key === 'style') {
+            console.log(value);
+            elementNode.style.cssText = value;
+        } else {
+            elementNode.setAttribute(key, value);
+        }
+    });
     return elementNode;
 };
+
+
