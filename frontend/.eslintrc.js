@@ -22,10 +22,10 @@ module.exports = {
             'always',
         ],
         'no-console': 'off',
-        'comma-dangle': [
-            'error',
-            'always',
-        ],
+        // 'comma-dangle': [
+        //     'error',
+        //     'always',
+        // ],
 
     },
 };

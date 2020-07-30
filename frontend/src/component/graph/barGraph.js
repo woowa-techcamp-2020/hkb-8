@@ -1,4 +1,18 @@
 import SVG from "./svgUtil";
+
+const DATA = [
+    { name: "생활", percentage: "71%", money: 315000 },
+    { name: "식비", percentage: "16%", money: 72000 },
+    { name: "교통", percentage: "4%", money: 18000 },
+    { name: "쇼핑/뷰티", percentage: "4%", money: 18000 },
+    { name: "의료/건강", percentage: "2%", money: 9000 },
+    { name: "문화/여가", percentage: "2%", money: 9000 },
+    { name: "미분류", percentage: "2%", money: 9000 },
+];
+// const barGraphArea = document.querySelector('#bargraph');
+// const barGraph = new BarGraph(barGraphArea, DATA);
+// barGraph.render();
+
 const { svg, rect, text, line, createNS } = SVG;
 
 const COLORS = [
