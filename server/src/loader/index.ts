@@ -6,6 +6,9 @@ import path from "path";
 import session from "express-session";
 import f from "session-file-store";
 
+import passport from "passport";
+import passportConfig from "../service/passport";
+
 function loader(app: Express): void {
     const FileStore = f(session);
     const fileStore = new FileStore();
@@ -18,6 +21,9 @@ function loader(app: Express): void {
     app.use(express.urlencoded({ extended: false }));
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, "public")));
+
+    app.use(passport.initialize());
+    passportConfig();
 
     app.use(
         session({
