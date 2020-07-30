@@ -1,10 +1,10 @@
 import './header.scss';
 import { createEl } from '../../utils/createElement';
-import { createChildren } from '../../utils/createChildren';
+import { appendChildren } from '../../utils/appendChildren';
 import { clickPaymentManageBtn } from './headerHandler';
 
 
-export class HeaderSection {
+export class Header {
     constructor() {
         this.headerSection = createEl('header','header-section', '', {});
 
@@ -22,7 +22,7 @@ export class HeaderSection {
         this.headerMiddle = createEl('div','header-middle', '우 아 한 가 계 부', {});
         this.headerRight = createEl('div','header-right', '결제 수단 관리', {onclick:clickPaymentManageBtn});
 
-        createChildren(this.headerSection, this.headerLeft, this.headerMiddle, this.headerRight);
+        appendChildren(this.headerSection, this.headerLeft, this.headerMiddle, this.headerRight);
     }
 
     render() {

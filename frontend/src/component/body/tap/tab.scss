@@ -8,7 +8,7 @@
   .list-tap-wrap {
     display: flex;
     flex-direction: row;
-    width:40%;
+    width:45%;
     justify-content: space-between;
     align-items: center;
     background-color: lightgray;
@@ -16,6 +16,9 @@
     padding: 15px;
 
     .list-tap-history-wrap {
+      width: 30%;
+      text-align:center;
+      cursor: pointer;
       .list-tap-history {
         font-size: 25px;
         padding: 5px 120px;
@@ -25,6 +28,10 @@
     }
 
 .list-tap-calender-wrap {
+  width: 30%;
+  text-align:center;
+  cursor: pointer;
+
   .list-tap-calender {
     font-size: 25px;
     padding: 5px 120px;
@@ -34,6 +41,10 @@
 }
 
 .list-tap-statistics-wrap {
+  width: 30%;
+  text-align:center;
+  cursor: pointer;
+
   .list-tap-statistics {
     font-size: 25px;
     padding: 5px 120px;
@@ -61,6 +72,7 @@ justify-content: center;
 .left-arrow {
   font-size: 30px;
   margin-right: 10px;
+  cursor: pointer;
 }
 .selected-month {
   font-size: 30px;
@@ -68,6 +80,7 @@ justify-content: center;
 .right-arrow {
   font-size: 30px;
   margin-left: 10px;
+  cursor: pointer;
 }
 }
 }
