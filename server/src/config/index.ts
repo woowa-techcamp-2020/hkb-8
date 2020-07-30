@@ -7,4 +7,5 @@ export default {
     dbPassword: process.env.DB_PASSWORD,
     dbName: process.env.DB_NAME,
     port: process.env.PORT,
+    jwtSecret: process.env.JWT_SECRET!,
 };

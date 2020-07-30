@@ -16,6 +16,7 @@ const INSERT_MEMBER_TB = `INSERT INTO member_tb(email, password, salt) VALUES(?,
 
 const INSERT_MEMBER_TB_DELETED = `INSERT INTO member_tb(email, password, salt, is_deleted) VALUES(?, ?, ?, true);`;
 
+const SELECT_MEMBER_TB_EMAIL = `select * from member_tb where email = ?;`;
 const SELECT_MEMBER_TB_EMAIL_PASSWORD = `select * from member_tb where email = ? and password = ?;`;
 // ================================== payment_method_tb =========================
 const CREATE_PAYMENT_METHOD_TB = `
@@ -100,6 +101,7 @@ export default {
     CREATE_MEMBER_TB,
     INSERT_MEMBER_TB,
     INSERT_MEMBER_TB_DELETED,
+    SELECT_MEMBER_TB_EMAIL,
     SELECT_MEMBER_TB_EMAIL_PASSWORD,
     CREATE_PAYMENT_METHOD_TB,
     INSERT_PAYMENT_METHOD_TB,
