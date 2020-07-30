@@ -1,0 +1,23 @@
+.header-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #1bb9b2;
+  padding: 20px;
+
+  .header-left {
+
+  }
+  .header-middle {
+    margin-left: 80px;
+    font-size: 30px;
+    font-weight: 600;
+    color:white;
+
+  }
+  .header-right {
+    color:white;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+}

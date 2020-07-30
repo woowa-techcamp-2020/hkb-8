@@ -1,17 +1,23 @@
-import * as math from './math.js'
-import { sum } from './math.js'
-import './app.scss';
-// import bori from './bori.jpg';
-//
+import { HeaderSection } from './component/header/header';
+import { ListTap, MonthTap } from './component/tap/tap';
+
+const headerSection = new HeaderSection();
+const monthTap = new MonthTap();
+const listTap = new ListTap();
+
 // document.addEventListener('DOMContentLoaded', () => {
-// 	document.body.innerHTML = `
-// 	<img src=${bori} />
-// `
-// })
+//     const targetEl = document.querySelector('#app',);
+//     header.createHeader();
+//     targetEl.appendChild(header.render());
+// });
 
+const app = document.querySelector('#app'); // 최상단 노드
+headerSection.createHeader();
+app.appendChild(headerSection.render());
 
-console.log(math.sum(1,3));
-console.log(sum(6,3))
-console.log(sum(2,1))
-console.log();
-(function() {})()
+monthTap.createMonthTapNodes();
+app.appendChild(monthTap.render());
+
+listTap.createListTap();
+app.appendChild(listTap.render());
+
