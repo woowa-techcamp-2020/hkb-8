@@ -1,4 +1,4 @@
-import './tap.scss';
+// import './tap.scss';
 import { createEl } from '../../utils/createElement';
 import { createChildren } from '../../utils/createChildren';
 import { clickHistory, clickCalender, clickStatistics } from './tapHandler';
