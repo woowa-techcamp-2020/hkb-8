@@ -1,4 +1,5 @@
 const SVG_URI = "http://www.w3.org/2000/svg";
+
 const createNS = (type, attr, ...children) => {
     const element = document.createElementNS(SVG_URI, type);
     for (const name in attr) {
@@ -12,6 +13,7 @@ const createNS = (type, attr, ...children) => {
     children.forEach((child) => element.appendChild(child));
     return element;
 };
+
 export default {
     createNS,
     svg(attr, ...children) {
@@ -30,6 +32,9 @@ export default {
     },
     text(attr, textContent) {
         return createNS("text", Object.assign(attr, { textContent }));
+    },
+    circle(attr, ...children) {
+        return createNS('circle', attr, ...children);
     },
     animate(attr) {
         return createNS("animate", attr);

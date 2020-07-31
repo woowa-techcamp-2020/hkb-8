@@ -1,17 +1,5 @@
 import SVG from "./svgUtil";
 
-const DATA = [
-    { name: "생활", percentage: "71%", money: 315000 },
-    { name: "식비", percentage: "16%", money: 72000 },
-    { name: "교통", percentage: "4%", money: 18000 },
-    { name: "쇼핑/뷰티", percentage: "4%", money: 18000 },
-    { name: "의료/건강", percentage: "2%", money: 9000 },
-    { name: "문화/여가", percentage: "2%", money: 9000 },
-    { name: "미분류", percentage: "2%", money: 9000 },
-];
-// const barGraphArea = document.querySelector('#bargraph');
-// const barGraph = new BarGraph(barGraphArea, DATA);
-// barGraph.render();
 
 const { svg, rect, text, line, createNS } = SVG;
 
@@ -37,16 +25,16 @@ const INNER_STROKE_COLOR = "#a3cbe5";
 const INNER_STROKE_WIDTH = 1;
 
 export default class BarGraph {
-    constructor(elementArea, data) {
-        if (!(elementArea instanceof HTMLElement))
-            throw "elementArea가 HTMLElement타입이 아닙니다.";
-        this.elementArea = elementArea;
+    constructor(data) {
+        this.elementArea = document.createElement('div');
         this.data = data;
     }
     render() {
         // 일단은 elementArea의 style height를 수동으로 잡았지만 추후 변경
         this.resetElementArea();
+        this.elementArea.style.height = this.data.length * (ONE_HEIGHT + TOP_MARGIN * 2) + OUTER_STROKE_WIDTH * 2 + "px";
         this.elementArea.appendChild(this.renderGraph());
+        return this.elementArea;
     }
     resetElementArea() {
         this.elementArea.innerHTML = "";
@@ -90,7 +78,7 @@ export default class BarGraph {
                     x: "18%",
                     y: ONE_HEIGHT / 2
                 },
-                obj.percentage
+                obj.percent
             ),
             rect(
                 {
@@ -101,7 +89,7 @@ export default class BarGraph {
                 createNS("animate", {
                     attributeName: "width",
                     from: 0,
-                    to: parseInt(obj.percentage) * RECT_RATIO + "%",
+                    to: parseInt(obj.percent) * RECT_RATIO + "%",
                     dur: ANIMATION_TIME,
                     fill: "freeze",
                 })
