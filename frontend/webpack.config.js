@@ -7,10 +7,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     mode: 'development',
     devtool: 'cheap-eval-source-map',
-    entry: ['./src/app.js','./src/app.scss'],
+    // entry: ['./src/app.js', './src/app.scss'],
+    entry: {
+        "app": './src/app/app.js',
+        "chartApp": './src/chartApp/chartApp.js'
+    },
     output: {
         path: path.resolve('./dist'),
-        filename: '[name].js',
+        filename: '[name]/[name].js',
     },
     module: {
         rules: [
@@ -40,11 +44,18 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './index.html',
+            chunks: ['app'],
+            template: './src/app/index.html',
+            filename: './app/index.html'
+        }),
+        new HtmlWebpackPlugin({
+            chunks: ['chartApp'],
+            template: './src/chartApp/index.html',
+            filename: './chartApp/index.html'
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename:'[name].css',
+            filename: '[name]/[name].css',
         })
     ],
 };
