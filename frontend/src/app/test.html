@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css">
+    <style>
+        .pie {
+            width: 300px;
+            background: #f06;
+            border-radius: 50%;
+        }
+
+        .pie circle {
+            fill: none;
+            stroke: gold;
+            stroke-width: 32;
+            animation: rotate 1.5s ease-in;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="app"></div> -->
+    <style>
+        svg {
+            width: 300px;
+            border-radius: 50%;
+            background: #3f51b5;
+            transform: rotate(-90deg);
+        }
+
+
+        circle {
+            fill: none;
+            stroke-width: 32;
+            r: 16;
+            cx: 16;
+            cy: 16;
+            transform: rotate(0deg);
+        }
+
+        circle.first {
+            stroke: #00bcd4;
+
+        }
+
+        circle.second {
+            stroke: #ffeb3b;
+        }
+
+        circle.third {
+            stroke: purple;
+        }
+    </style>
+    <svg viewBox="0 0 32 32">
+        <circle class='second' stroke-dasharray="50 100"></circle>
+        <circle class='first' stroke-dasharray="30 100"></circle>
+    </svg>
+
+</body>
+
+</html>
