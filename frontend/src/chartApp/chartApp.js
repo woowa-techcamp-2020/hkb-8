@@ -1,7 +1,10 @@
-import { HeaderSection } from '../component/header/header';
-import { ListTap, MonthTap } from '../component/tap/tap';
+import { Header } from '../component/header/header';
+import { Body } from '../component/body/body';
+
 import BarGraph from '../component/graph/barGraph.js';
 import PieChart from '../component/graph/pieChart.js';
+
+import './chartApp.scss';
 
 const DATA = [
     { name: "생활", percent: "70%", money: 315000 },
@@ -13,20 +16,16 @@ const DATA = [
     { name: "미분류", percent: "2%", money: 9000 },
 ];
 
-const headerSection = new HeaderSection();
-const monthTap = new MonthTap();
-const listTap = new ListTap();
 
 const app = document.querySelector('#app'); // 최상단 노드
-headerSection.createHeader();
+const headerSection = new Header();
+const bodySection = new Body();
+
+// headerSection.createHeader();
 app.appendChild(headerSection.render());
 
-monthTap.createMonthTapNodes();
-app.appendChild(monthTap.render());
-
-listTap.createListTap();
-app.appendChild(listTap.render());
-
+// bodySection.createBody();
+app.appendChild(bodySection.render());
 
 
 const barGraph = new BarGraph(DATA);

@@ -1,0 +1,134 @@
+.input-section {
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+
+
+  .input-box-wrap {
+    display: flex;
+    flex-direction: column;
+    width:45%;
+
+
+    .input-form {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      .text {
+        //border-bottom:1px solid darkgray;
+        //padding: 0px 50px;
+
+      }
+      .title {
+        margin-right: 15px;
+        font-weight: 600;
+
+      }
+      .wrap {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+      }
+      .input-top {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+        justify-content: space-between;
+        .classification-wrap {
+
+          .classification-title {
+
+          }
+          .classification-btn {
+              border: 1px solid lightseagreen;
+            color: lightseagreen;
+              padding: 5px 20px;
+              margin-right: 10px;
+              border-radius: 4px;
+            cursor: pointer;
+
+          }
+        }
+        .delete-input-info-btn {
+          color:lightseagreen;
+          font-size: 15px;
+          cursor: pointer;
+        }
+      }
+      .input-middle {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        .select {
+          border-bottom: 1px solid gray;
+          font-size: 15px;
+          padding: 0px 80px;
+          color: gray;
+        }
+        .input-date-wrap {
+
+          .input-date-title {
+
+          }
+          .input-date-text {
+            border-bottom:1px solid darkgray;
+            padding: 0px 30px;
+          }
+        }
+        .input-category-wrap {
+          .input-category-title {
+
+          }
+          .input-category-select {
+
+          }
+
+        }
+        .input-payment-select-wrap {
+          .input-payment-select-title {
+
+          }
+          .input-payment-select {
+
+          }
+        }
+      }
+      .input-bottom {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+        justify-content: space-between;
+        .input-money-wrap {
+          .input-money-title {
+
+          }
+          .input-money-text {
+            border-bottom:1px solid darkgray;
+            padding: 0px 100px;
+          }
+        }
+        .input-content-wrap {
+          .input-content-title {
+
+          }
+          .input-content-text {
+            border-bottom:1px solid darkgray;
+            padding: 0px 100px;
+          }
+        }
+      }
+    }
+    .input-submit-btn {
+      text-align: center;
+      background-color: lightseagreen;
+      padding: 10px;
+      color: white;
+      font-weight: 600;
+      border-radius: 0px 0px 5px 5px;
+      cursor: pointer;
+    }
+  }
+}

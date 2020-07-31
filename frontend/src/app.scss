@@ -1,0 +1,12 @@
+@import 'utils/reset.scss';
+//@import 'component/header/header.scss';
+//@import 'component/body/tap/tab';
+//@import 'component/body/body';
+
+
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

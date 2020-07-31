@@ -1,17 +1,14 @@
-import { HeaderSection } from '../component/header/header';
-import { ListTap, MonthTap } from '../component/tap/tap';
-
-const headerSection = new HeaderSection();
-const monthTap = new MonthTap();
-const listTap = new ListTap();
+import { Header } from '../component/header/header';
+import { Body } from '../component/body/body';
+import './app.scss';
 
 const app = document.querySelector('#app'); // 최상단 노드
-headerSection.createHeader();
+const headerSection = new Header();
+const bodySection = new Body();
+
+// headerSection.createHeader();
 app.appendChild(headerSection.render());
 
-monthTap.createMonthTapNodes();
-app.appendChild(monthTap.render());
-
-listTap.createListTap();
-app.appendChild(listTap.render());
+// bodySection.createBody();
+app.appendChild(bodySection.render());
 
