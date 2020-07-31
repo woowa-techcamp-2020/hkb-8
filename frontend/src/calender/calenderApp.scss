@@ -1,0 +1,17 @@
+@import '../utils/reset.scss';
+@import '../component/header/header.scss';
+
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.ready {
+  margin-top: 100px;
+  font-size: 50px;
+  color: #000;
+  text-align: center;
+}
