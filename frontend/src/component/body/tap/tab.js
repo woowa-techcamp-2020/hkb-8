@@ -19,12 +19,12 @@ export class ListTab {
 
     createListTap() {
         this.listTapWrap = createEl('div','list-tap-wrap', '', {});
-        this.listTapHistoryWrap = createEl('div','list-tap-history-wrap', '', {onclick:clickHistory});
+        this.listTapHistoryWrap = createEl('div','list-tap-history-wrap list', '', {onclick:clickHistory});
         this.listTapHistory = createEl('div','list-tap-history', '내역', {});
         // this.listTapContour = createEl('div','list-tap-contour', '|', {});
-        this.listTapCalenderWrap = createEl('div','list-tap-calender-wrap', '', {onclick:clickCalender});
+        this.listTapCalenderWrap = createEl('div','list-tap-calender-wrap list', '', {onclick:clickCalender});
         this.listTapCalender = createEl('div','list-tap-calender', '달력', {});
-        this.listTapStatisticsWrap = createEl('div','list-tap-statistics-wrap', '', {onclick:clickStatistics});
+        this.listTapStatisticsWrap = createEl('div','list-tap-statistics-wrap list', '', {onclick:clickStatistics});
         this.listTapStatistics = createEl('div','list-tap-statistics', '통계', {});
 
         appendChildren(this.listTapWrap, this.listTapHistoryWrap, this.listTapCalenderWrap, this.listTapStatisticsWrap);

@@ -5,6 +5,15 @@
   align-items: center;
   margin-top: 30px;
 
+  .list {
+    width: 30%;
+  text-align: center;
+    div {
+    padding: 10px;
+
+    }
+  }
+
   .list-tap-wrap {
     display: flex;
     flex-direction: row;
@@ -21,7 +30,7 @@
       cursor: pointer;
       .list-tap-history {
         font-size: 25px;
-        padding: 5px 120px;
+        //padding: 5px 120px;
         background-color: white;
         border-radius: 20px;
   }
@@ -34,7 +43,7 @@
 
   .list-tap-calender {
     font-size: 25px;
-    padding: 5px 120px;
+    //padding: 5px 120px;
     background-color: white;
     border-radius: 20px;
   }
@@ -47,7 +56,7 @@
 
   .list-tap-statistics {
     font-size: 25px;
-    padding: 5px 120px;
+    //padding: 5px 120px;
     background-color: white;
     border-radius: 20px;
   }
