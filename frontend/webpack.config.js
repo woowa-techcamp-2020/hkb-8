@@ -10,7 +10,8 @@ module.exports = {
     // entry: ['./src/app.js', './src/app.scss'],
     entry: {
         "app": './src/app/app.js',
-        "chartApp": './src/chartApp/chartApp.js'
+        "chartApp": './src/chartApp/chartApp.js',
+        "calenderApp": './src/calender/calenderApp.js'
     },
     output: {
         path: path.resolve('./dist'),
@@ -52,6 +53,11 @@ module.exports = {
             chunks: ['chartApp'],
             template: './src/chartApp/index.html',
             filename: './chartApp/index.html'
+        }),
+        new HtmlWebpackPlugin({
+            chunks: ['calenderApp'],
+            template: './src/calender/index.html',
+            filename: './calender/index.html'
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
