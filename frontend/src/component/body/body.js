@@ -1,16 +1,12 @@
 import { createEl } from '../../utils/createElement';
 import { appendChildren } from '../../utils/appendChildren';
-import { ListTab, MonthTab } from './tap/tab';
-import { Input } from './input/input';
 import './body.scss';
 
 
 export class Body {
-    constructor() {
-        this.bodySection = createEl('div','body-section', '', {});
-        this.monthTab = new MonthTab();
-        this.listTab = new ListTab();
-        this.input = new Input();
+    constructor(...components) {
+        this.bodySection = createEl('div', 'body-section', '', {});
+        this.components = components.map(o => o);
     }
 
     setData(data) {
@@ -18,15 +14,14 @@ export class Body {
     }
 
     reset() {
-        this.bodySection.innerHTML ='';
+        this.bodySection.innerHTML = '';
     }
 
     createBody() {
-        appendChildren(this.bodySection, this.monthTab.render(), this.listTab.render(), this.input.render());
+        appendChildren(this.bodySection, ...this.components.map(component => component.render()));
     }
 
     render() {
-        // return this.baseElement;
         this.reset();
         this.createBody();
 

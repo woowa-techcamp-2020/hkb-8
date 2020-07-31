@@ -9,7 +9,7 @@ const COLORS = [
 
 export default function (data) {
     const areaElement = document.createElement('div');
-    areaElement.style.width = "300px";
+    areaElement.className = "piechart";
     const svgElement = svg(
         {
             viewBox: "0 0 32 32",
@@ -46,6 +46,7 @@ function makePieces(data) {
                     from: pieValue(value),
                     to: 0,
                     dur: `${value * 0.01}s`,
+                    // dur: `1s`,
                     fill: "freeze"
                 })
             );

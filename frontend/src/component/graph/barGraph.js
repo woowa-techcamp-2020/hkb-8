@@ -27,6 +27,7 @@ const INNER_STROKE_WIDTH = 1;
 export default class BarGraph {
     constructor(data) {
         this.elementArea = document.createElement('div');
+        this.elementArea.className = "bargraph";
         this.data = data;
     }
     render() {
