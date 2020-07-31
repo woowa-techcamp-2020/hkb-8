@@ -6,7 +6,7 @@ import { clickHistory, clickCalender, clickStatistics, clickLeftArrow, clickRigh
 
 export class ListTab {
     constructor() {
-        this.listTapSection = createEl('div','list-tap-section', '', {});
+        this.listTapSection = createEl('div', 'list-tap-section', '', {});
 
     }
     setData(data) {
@@ -14,18 +14,18 @@ export class ListTab {
     }
 
     reset() {
-        this.listTapSection.innerHTML ='';
+        this.listTapSection.innerHTML = '';
     }
 
     createListTap() {
-        this.listTapWrap = createEl('div','list-tap-wrap', '', {});
-        this.listTapHistoryWrap = createEl('div','list-tap-history-wrap list', '', {onclick:clickHistory});
-        this.listTapHistory = createEl('div','list-tap-history', '내역', {});
+        this.listTapWrap = createEl('div', 'list-tap-wrap', '', {});
+        this.listTapHistoryWrap = createEl('div', 'list-tap-history-wrap list', '', { onclick: clickHistory });
+        this.listTapHistory = createEl('div', 'list-tap-history', '내역', {});
         // this.listTapContour = createEl('div','list-tap-contour', '|', {});
-        this.listTapCalenderWrap = createEl('div','list-tap-calender-wrap list', '', {onclick:clickCalender});
-        this.listTapCalender = createEl('div','list-tap-calender', '달력', {});
-        this.listTapStatisticsWrap = createEl('div','list-tap-statistics-wrap list', '', {onclick:clickStatistics});
-        this.listTapStatistics = createEl('div','list-tap-statistics', '통계', {});
+        this.listTapCalenderWrap = createEl('div', 'list-tap-calender-wrap list', '', { onclick: clickCalender });
+        this.listTapCalender = createEl('div', 'list-tap-calender', '달력', {});
+        this.listTapStatisticsWrap = createEl('div', 'list-tap-statistics-wrap list', '', { onclick: clickStatistics });
+        this.listTapStatistics = createEl('div', 'list-tap-statistics', '통계', {});
 
         appendChildren(this.listTapWrap, this.listTapHistoryWrap, this.listTapCalenderWrap, this.listTapStatisticsWrap);
         appendChildren(this.listTapHistoryWrap, this.listTapHistory);
@@ -45,7 +45,7 @@ export class ListTab {
 
 export class MonthTab {
     constructor() {
-        this.monthTapSection = createEl('div','month-tap-section', '', {});
+        this.monthTapSection = createEl('div', 'month-tap-section', '', {});
 
     }
     setData(data) {
@@ -53,16 +53,16 @@ export class MonthTab {
     }
 
     reset() {
-        this.monthTapSection.innerHTML ='';
+        this.monthTapSection.innerHTML = '';
     }
 
     createMonthTapNodes() {
-        this.monthTapWrap = createEl('div','month-tap-wrap', '', {});
-        this.leftArrow = createEl('div','left-arrow', '⇦', {onclick:clickLeftArrow});
-        this.selectedMonth = createEl('div','selected-month', '6월', {});
-        this.rightArrow = createEl('div','right-arrow', '⇨', {onclick:clickRightArrow});
+        this.monthTapWrap = createEl('div', 'month-tap-wrap', '', {});
+        this.leftArrow = createEl('div', 'left-arrow', '⇦', { onclick: clickLeftArrow });
+        this.selectedMonth = createEl('div', 'selected-month', '6월', {});
+        this.rightArrow = createEl('div', 'right-arrow', '⇨', { onclick: clickRightArrow });
 
-        appendChildren(this.monthTapWrap, this.leftArrow,this.selectedMonth, this.rightArrow);
+        appendChildren(this.monthTapWrap, this.leftArrow, this.selectedMonth, this.rightArrow);
         appendChildren(this.monthTapSection, this.monthTapWrap);
     }
 
