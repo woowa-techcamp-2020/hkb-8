@@ -17,18 +17,16 @@ const DATA = [
 ];
 
 
-const app = document.querySelector('#app'); // 최상단 노드
 const headerSection = new Header();
-const bodySection = new Body(new MonthTab, new ListTab);
-
-// headerSection.createHeader();
-app.appendChild(headerSection.render());
-
-// bodySection.createBody();
-app.appendChild(bodySection.render());
-
-app.appendChild(PieChart(DATA));
-
 const barGraph = new BarGraph(DATA);
-app.appendChild(barGraph.render());
+const bodySection = new Body(headerSection, new MonthTab, new ListTab, barGraph);
+
+
+// const app = document.querySelector('#app'); // 최상단 노드
+// app.appendChild(headerSection.render());
+// app.appendChild(bodySection.render());
+// app.appendChild(PieChart(DATA));
+// app.appendChild(barGraph.render());
+
+export default bodySection;
 

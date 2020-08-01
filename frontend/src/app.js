@@ -1,16 +1,28 @@
-import { Header } from './component/header/header';
-import { Body } from './component/body/body';
 import './app.scss';
-import { ListTab, MonthTab } from './component/body/tap/tab';
-import { Input } from './component/body/input/input';
+import chartApp from './chartApp/chartApp'
+import historyApp from './app/app';
+import calenderApp from './calender/calenderApp';
 
 const app = document.querySelector('#app'); // 최상단 노드
-const headerSection = new Header();
-headerSection.createHeader();
+app.appendChild(historyApp.render());
 
-const recordSection = new Body(new MonthTab, new ListTab, new Input);
-recordSection.createBody();
+const viewMap = new Map;
+viewMap.set('/', historyApp);
+viewMap.set('/chart', chartApp);
+viewMap.set('/calender', calenderApp);
 
-app.appendChild(headerSection.render());
-app.appendChild(recordSection.render());
 
+function popStateHandler({ state }) {
+    console.log(state);
+    const targetView = location.pathname;
+    const viewComponent = viewMap.get(targetView);
+    app.innerHTML = "";
+    app.appendChild(viewComponent.render());
+}
+window.popStateHandler = popStateHandler;
+
+function onRouter() {
+    window.addEventListener("popstate", popStateHandler);
+}
+
+onRouter();

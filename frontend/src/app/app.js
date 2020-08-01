@@ -6,11 +6,8 @@ import { Input } from '../component/body/input/input';
 
 const app = document.querySelector('#app'); // 최상단 노드
 const headerSection = new Header();
-const bodySection = new Body(new MonthTab, new ListTab, new Input);
-
 headerSection.createHeader();
-app.appendChild(headerSection.render());
-
+const bodySection = new Body(headerSection, new MonthTab, new ListTab, new Input);
 bodySection.createBody();
-app.appendChild(bodySection.render());
 
+export default bodySection;
