@@ -8,18 +8,59 @@
   justify-content: center;
 }
 
+.one-pie:hover {
+  opacity: 0.5;
+}
+.one-pie:hover ~ .piechart-text {
+      visibility: visible;
+    }
+
 .piechart {
   text-align: center;
-  width: 100%;
-  margin-top: 100px;
+  width: 400px;
+  margin: 100px auto 0px;
+  position: relative;
 
+
+  .piechart-text {
+    outline: 1px solid gray;
+    position: absolute;
+    width:100px;
+    height:30px;
+    line-height:32px;
+    background-color: #fff;
+    z-index: 999;
+  }
+  .piechart-text-line {
+    position: absolute;
+    width:70px;
+    transform-origin: 0% 0%;
+  }
+
+  
   svg {
     display: inline-block;
     width: 400px;
   }
 }
 
+.pie-shadow {
+  width:320px;
+  height:320px;
+  position: absolute;
+  outline:1px solid black;
+  z-index: 999;
+  box-shadow: 0px 10px 20px grey;
+  left: 40px;
+  top: 40px;
+  border-radius: 160px;
+}
+
 .bargraph {
   width:940px;
   margin: 100px auto;
+}
+
+.hidden {
+  display: none;
 }

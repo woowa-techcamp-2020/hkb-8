@@ -2,6 +2,8 @@ const SVG_URI = "http://www.w3.org/2000/svg";
 
 const createNS = (type, attr, ...children) => {
     const element = document.createElementNS(SVG_URI, type);
+    element.version = "1.1";
+
     for (const name in attr) {
         if (name === "textContent") {
             const textNode = document.createTextNode(attr[name]);
