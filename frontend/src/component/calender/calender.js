@@ -18,7 +18,7 @@ export class Calender {
 
     createCalenderWrap() {
         const calenderWrap = div({className:'calendar-wrap'},
-                div({className:'weekdays'},
+                div({className:'weekends'},
                     div({className:''}, 'Sun'),
                     div({className:''}, 'Mon'),
                     div({className:''}, 'Tue'),
@@ -27,7 +27,38 @@ export class Calender {
                     div({className:''}, 'Fri'),
                     div({className:''}, 'Sat'),
                 ),
-                div({className:'days'}));
+                div({className:'days'},
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:'today'},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'10'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'20'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'1'),
+                    div({className:''},'30'),
+                        ));
         return calenderWrap;
     }
 
