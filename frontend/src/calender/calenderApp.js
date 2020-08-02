@@ -56,7 +56,7 @@ function renderCalendar() {
         "12월",
     ];
 
-    // console.log(months[date.getMonth()])
+    // console.log(months[date.getMonth()])//
     document.querySelector(".date").innerHTML = date.getFullYear() +'.' + months[date.getMonth()];
     // document.querySelector(".date p").innerHTML = new Date().toDateString();
 
