@@ -1,7 +1,7 @@
 import SVG from "./svgUtil";
 import { span, hr } from "../../utils/element.js";
 
-const { svg, circle, rect, text, line, animate } = SVG;
+const { svg, circle, animate, createNS } = SVG;
 
 const $_ = (pEl, ...cEL) => cEL.forEach(el => pEl.appendChild(el));
 
@@ -26,6 +26,10 @@ export default function (data) {
     const areaElement = document.createElement('div');
 
     areaElement.className = "piechart";
+    const pieces = makePieces(reversedData);
+
+    // pieces[0].setAttribute('filter', 'url(#f1)');    // 필터, (하지만 그다지 안 이쁨..)
+
     const svgElement =
         svg(
             {
@@ -35,11 +39,18 @@ export default function (data) {
                 transform:rotate(-90deg);
                 background:#fff;`,
             },
-            ...makePieces(reversedData)
+            createNS('defs', {},
+                createNS('filter', { id: "f1", x: -1, y: -1, width: '300%', height: '300%' },
+                    createNS('feOffset', { result: 'offOut', in: 'SourceGraphic', dx: -1, dy: 0 }),
+                    createNS('feGaussianBlur', { result: 'blurout', in: 'offOut', stdDeviation: 1 }),
+                    createNS('feBlend', { in: 'SourceGraphic', in2: 'blurOut', mode: 'normal' })
+                )
+            ),
+            ...pieces
         );
     const textElements = makeTextAndLine(reversedData);
 
-    [].forEach.call(svgElement.children, (one, idx) => {
+    [].forEach.call(pieces, (one, idx) => {
         one.addEventListener('mouseover', e => {
             textElements[idx * 2 + 1].classList.toggle('hidden');
             textElements[idx * 2].classList.toggle('hidden');
