@@ -5,7 +5,8 @@ import './calender.scss'
 
 export class Calender {
     constructor() {
-        this.calenderSection = createEl('div','calenderApp-section', '', {});
+        this.calenderSection = createEl('div','calender-section', '', {});
+
     }
     setData(data) {
         this.data = data;
@@ -16,8 +17,7 @@ export class Calender {
     }
 
     createCalenderWrap() {
-        const calenderWrap = div({className:'calenderApp-section'},
-            div({className:'calendar-wrap'},
+        const calenderWrap = div({className:'calendar-wrap'},
                 div({className:'weekdays'},
                     div({className:''}, 'Sun'),
                     div({className:''}, 'Mon'),
@@ -27,14 +27,14 @@ export class Calender {
                     div({className:''}, 'Fri'),
                     div({className:''}, 'Sat'),
                 ),
-                div({className:'days'})));
+                div({className:'days'}));
         return calenderWrap;
     }
 
     createCalender() {
-        // const calenderWrap = this.createCalenderWrap();
         appendChildren(this.calenderSection, this.createCalenderWrap());
     }
+
 
     render() {
         // return this.baseElement;
@@ -42,5 +42,7 @@ export class Calender {
         this.createCalender();
 
         return this.calenderSection;
+
     }
+
 }

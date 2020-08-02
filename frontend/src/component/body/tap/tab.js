@@ -58,9 +58,9 @@ export class MonthTab {
 
     createMonthTapNodes() {
         this.monthTapWrap = createEl('div', 'month-tap-wrap', '', {});
-        this.leftArrow = createEl('div', 'left-arrow', '⇦', { onclick: clickLeftArrow });
-        this.selectedMonth = createEl('div', 'selected-month', '6월', {});
-        this.rightArrow = createEl('div', 'right-arrow', '⇨', { onclick: clickRightArrow });
+        this.leftArrow = createEl('div', 'left-arrow prev', '⇦', { onclick: clickLeftArrow });
+        this.selectedMonth = createEl('div', 'selected-month date', '6월', {});
+        this.rightArrow = createEl('div', 'right-arrow next', '⇨', { onclick: clickRightArrow });
 
         appendChildren(this.monthTapWrap, this.leftArrow, this.selectedMonth, this.rightArrow);
         appendChildren(this.monthTapSection, this.monthTapWrap);

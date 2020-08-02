@@ -1,0 +1,30 @@
+.calender-section {
+  background-color: lightgray;
+  font-family: 'Lato', "sans-serif";
+
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+
+  .calendar-wrap {
+    display: flex;
+    flex-direction: column;
+    width:45%;
+
+    .weekdays {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      div {
+        padding: 10px;
+      }
+    }
+
+    .days {
+
+    }
+  }
+
+}
