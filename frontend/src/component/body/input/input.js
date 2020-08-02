@@ -59,7 +59,7 @@ export class Input {
 
     createInput() {
         const inputBoxWrap = this.createInputBoxWrap();
-        console.log(inputBoxWrap);
+        // console.log(inputBoxWrap);
         appendChildren(this.inputSection, inputBoxWrap);
     }
 

@@ -70,6 +70,8 @@ export class MonthTab {
         // return this.baseElement;
         this.reset();
         this.createMonthTapNodes();
+        // document.querySelector('.data').innerText = '7월ㅇㄹㄴ'
+
 
         return this.monthTapSection;
     }
