@@ -1,11 +1,12 @@
 import './tab.scss';
 import { createEl } from '../../../utils/createElement';
-import { appendChildren } from '../../../utils/appendChildren';
+import { appendArray } from '../../../utils/handleElement';
 import { clickHistory, clickCalender, clickStatistics, clickLeftArrow, clickRightArrow } from './tabHandler';
-
+import { Calender } from "../../calender/calender";
 
 export class ListTab {
-    constructor() {
+    constructor(router) {
+        this.router = router;
         this.listTapSection = createEl('div', 'list-tap-section', '', {});
 
     }
@@ -19,23 +20,28 @@ export class ListTab {
 
     createListTap() {
         this.listTapWrap = createEl('div', 'list-tap-wrap', '', {});
-        this.listTapHistoryWrap = createEl('div', 'list-tap-history-wrap list', '', { onclick: clickHistory });
+        this.listTapHistoryWrap = createEl('div', 'list-tap-history-wrap list', '', { onclick: e => this.clickHandler(e, '/history') });
         this.listTapHistory = createEl('div', 'list-tap-history', '내역', {});
         // this.listTapContour = createEl('div','list-tap-contour', '|', {});
-        this.listTapCalenderWrap = createEl('div', 'list-tap-calender-wrap list', '', { onclick: clickCalender });
+        this.listTapCalenderWrap = createEl('div', 'list-tap-calender-wrap list', '', { onclick: e => this.clickHandler(e, '/calender') });
         this.listTapCalender = createEl('div', 'list-tap-calender', '달력', {});
-        this.listTapStatisticsWrap = createEl('div', 'list-tap-statistics-wrap list', '', { onclick: clickStatistics });
+        this.listTapStatisticsWrap = createEl('div', 'list-tap-statistics-wrap list', '', { onclick: e => this.clickHandler(e, '/chart') });
         this.listTapStatistics = createEl('div', 'list-tap-statistics', '통계', {});
 
-        appendChildren(this.listTapWrap, this.listTapHistoryWrap, this.listTapCalenderWrap, this.listTapStatisticsWrap);
-        appendChildren(this.listTapHistoryWrap, this.listTapHistory);
-        appendChildren(this.listTapCalenderWrap, this.listTapCalender);
-        appendChildren(this.listTapStatisticsWrap, this.listTapStatistics);
-        appendChildren(this.listTapSection, this.listTapWrap);
+        appendArray(this.listTapWrap, [this.listTapHistoryWrap, this.listTapCalenderWrap, this.listTapStatisticsWrap]);
+        appendArray(this.listTapHistoryWrap, [this.listTapHistory]);
+        appendArray(this.listTapCalenderWrap, [this.listTapCalender]);
+        appendArray(this.listTapStatisticsWrap, [this.listTapStatistics]);
+        appendArray(this.listTapSection, [this.listTapWrap]);
+    }
+    clickHandler(e, path) {
+        // const path = getCurrentPath(e, path);
+        // const state = getStates(path);
+        const state = {};
+        this.router.go(path, state)
     }
 
     render() {
-        // return this.baseElement;
         this.reset();
         this.createListTap();
 
@@ -44,8 +50,10 @@ export class ListTab {
 }
 
 export class MonthTab {
-    constructor() {
+    constructor(router) {
+        this.router = router;
         this.monthTapSection = createEl('div', 'month-tap-section', '', {});
+        this.currentMonth = new Date().getMonth() + 1;
 
     }
     setData(data) {
@@ -58,16 +66,33 @@ export class MonthTab {
 
     createMonthTapNodes() {
         this.monthTapWrap = createEl('div', 'month-tap-wrap', '', {});
-        this.leftArrow = createEl('div', 'left-arrow', '⇦', { onclick: clickLeftArrow });
-        this.selectedMonth = createEl('div', 'selected-month', '6월', {});
-        this.rightArrow = createEl('div', 'right-arrow', '⇨', { onclick: clickRightArrow });
+        this.leftArrow = createEl('div', 'left-arrow prev', '⇦', { onclick: clickLeftArrow });
+        this.selectedMonth = createEl('div', 'selected-month date', `${this.currentMonth}`, {});
 
-        appendChildren(this.monthTapWrap, this.leftArrow, this.selectedMonth, this.rightArrow);
-        appendChildren(this.monthTapSection, this.monthTapWrap);
+        this.rightArrow = createEl('div', 'right-arrow next', '⇨', { onclick: clickRightArrow });
+
+        appendArray(this.monthTapWrap, [this.leftArrow, this.selectedMonth, this.rightArrow]);
+        appendArray(this.monthTapSection, [this.monthTapWrap]);
+
+        this.leftArrow.addEventListener("click", () => {
+            const calendarComponent = this.router.viewMap.get('/calender');
+            calendarComponent.moveMonth(-1);
+            calendarComponent.renderCalendar();
+            this.currentMonth--;
+            this.render();
+        });
+
+        this.rightArrow.addEventListener("click", () => {
+            // TODO: adf
+            const calendarComponent = this.router.viewMap.get('/calender');
+            calendarComponent.moveMonth(1);
+            calendarComponent.renderCalendar();
+            this.currentMonth++;
+            this.render();
+        });
     }
 
     render() {
-        // return this.baseElement;
         this.reset();
         this.createMonthTapNodes();
 

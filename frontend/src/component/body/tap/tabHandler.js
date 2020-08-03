@@ -1,22 +1,27 @@
+
+
 export const clickHistory = function (e) {
-    // console.log(e.target);
-    location.href = "/app"
+    const path = getCurrentPath(e, '/history');
+    const state = getStates(path);
+    window.router.go('/history')
 };
 
 export const clickCalender = function (e) {
-    // console.log(e.target);
-    location.href = '/calender';
+    const path = getCurrentPath(e, '/calender');
+    const state = getStates(path);
+    window.router.go('/calender')
 };
 
 export const clickStatistics = function (e) {
-    // console.log(e.target);
-    location.href = "/chartApp";
+    const path = getCurrentPath(e, '/chart');
+    const state = getStates(path);
+    window.router.go('/chart')
 };
 
 export const clickLeftArrow = function (e) {
-    console.log(e.target);
+    console.log("leftArrow");
 };
 
 export const clickRightArrow = function (e) {
-    console.log(e.target);
+    console.log("rightArrow");
 };
