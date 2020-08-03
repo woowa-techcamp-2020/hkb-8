@@ -1,12 +1,13 @@
 import { createEl } from '../../utils/createElement';
-import { appendChildren } from '../../utils/appendChildren';
+import { appendArray } from '../../utils/handleElement'
 import './body.scss';
 
 
 export class Body {
-    constructor(...components) {
+    constructor(...commonComponents) {
         this.bodySection = createEl('div', 'body-section', '', {});
-        this.components = components.map(o => o);
+        this.commonComponents = commonComponents.map(o => o);
+        this.mutableComponents = [];
     }
 
     setData(data) {
@@ -16,9 +17,14 @@ export class Body {
     reset() {
         this.bodySection.innerHTML = '';
     }
+    setMutableComponents(...components) {
+        this.mutableComponents = components;
+    }
 
     createBody() {
-        appendChildren(this.bodySection, ...this.components.map(component => component.render()));
+        const commons = this.commonComponents.map(component => component.render());
+        const mutable = this.mutableComponents.map(component => component.render());
+        appendArray(this.bodySection, [...commons, ...mutable]);
     }
 
     render() {

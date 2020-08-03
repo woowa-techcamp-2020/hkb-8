@@ -5,7 +5,8 @@ import { clickHistory, clickCalender, clickStatistics, clickLeftArrow, clickRigh
 import { Calender } from "../../calender/calender";
 
 export class ListTab {
-    constructor() {
+    constructor(router) {
+        this.router = router;
         this.listTapSection = createEl('div', 'list-tap-section', '', {});
 
     }
@@ -19,12 +20,12 @@ export class ListTab {
 
     createListTap() {
         this.listTapWrap = createEl('div', 'list-tap-wrap', '', {});
-        this.listTapHistoryWrap = createEl('div', 'list-tap-history-wrap list', '', { onclick: clickHistory });
+        this.listTapHistoryWrap = createEl('div', 'list-tap-history-wrap list', '', { onclick: e => this.clickHandler(e, '/history') });
         this.listTapHistory = createEl('div', 'list-tap-history', '내역', {});
         // this.listTapContour = createEl('div','list-tap-contour', '|', {});
-        this.listTapCalenderWrap = createEl('div', 'list-tap-calender-wrap list', '', { onclick: clickCalender });
+        this.listTapCalenderWrap = createEl('div', 'list-tap-calender-wrap list', '', { onclick: e => this.clickHandler(e, '/calender') });
         this.listTapCalender = createEl('div', 'list-tap-calender', '달력', {});
-        this.listTapStatisticsWrap = createEl('div', 'list-tap-statistics-wrap list', '', { onclick: clickStatistics });
+        this.listTapStatisticsWrap = createEl('div', 'list-tap-statistics-wrap list', '', { onclick: e => this.clickHandler(e, '/chart') });
         this.listTapStatistics = createEl('div', 'list-tap-statistics', '통계', {});
 
         appendChildren(this.listTapWrap, this.listTapHistoryWrap, this.listTapCalenderWrap, this.listTapStatisticsWrap);
@@ -33,9 +34,14 @@ export class ListTab {
         appendChildren(this.listTapStatisticsWrap, this.listTapStatistics);
         appendChildren(this.listTapSection, this.listTapWrap);
     }
+    clickHandler(e, path) {
+        // const path = getCurrentPath(e, path);
+        // const state = getStates(path);
+        const state = {};
+        this.router.go(path, state)
+    }
 
     render() {
-        // return this.baseElement;
         this.reset();
         this.createListTap();
 
@@ -44,7 +50,8 @@ export class ListTab {
 }
 
 export class MonthTab {
-    constructor() {
+    constructor(router) {
+        this.router = router;
         this.monthTapSection = createEl('div', 'month-tap-section', '', {});
         this.currentMonth = new Date().getMonth() + 1;
 
@@ -68,7 +75,7 @@ export class MonthTab {
         appendChildren(this.monthTapSection, this.monthTapWrap);
 
         this.leftArrow.addEventListener("click", () => {
-            const calendarComponent = window.viewMap.get('/calender').components.find(one => one instanceof Calender);
+            const calendarComponent = this.router.viewMap.get('/calender');
             calendarComponent.moveMonth(-1);
             calendarComponent.renderCalendar();
             this.currentMonth--;
@@ -76,7 +83,8 @@ export class MonthTab {
         });
 
         this.rightArrow.addEventListener("click", () => {
-            const calendarComponent = window.viewMap.get('/calender').components.find(one => one instanceof Calender);
+            // TODO: adf
+            const calendarComponent = this.router.viewMap.get('/calender');
             calendarComponent.moveMonth(1);
             calendarComponent.renderCalendar();
             this.currentMonth++;

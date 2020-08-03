@@ -25,9 +25,12 @@ const INNER_STROKE_COLOR = "#a3cbe5";
 const INNER_STROKE_WIDTH = 1;
 
 export default class BarGraph {
-    constructor(data) {
+    constructor() {
         this.elementArea = document.createElement('div');
         this.elementArea.className = "bargraph";
+        this.data = null;
+    }
+    setData(data) {
         this.data = data;
     }
     render() {

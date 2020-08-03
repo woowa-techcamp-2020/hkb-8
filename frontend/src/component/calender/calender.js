@@ -4,9 +4,9 @@ import { appendChildren } from "../../utils/appendChildren";
 import './calender.scss'
 
 export class Calender {
-    constructor(date) {
+    constructor() {
         this.calenderSection = createEl('div', 'calender-section', '', {});
-        this.date = date;
+        this.date = new Date();
 
     }
     setData(data) {
@@ -104,9 +104,7 @@ export class Calender {
         appendChildren(this.calenderSection, this.createCalenderWrap());
     }
 
-
     render() {
-        // return this.baseElement;
         this.reset();
         this.createCalender();
         this.renderCalendar();

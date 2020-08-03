@@ -36,7 +36,7 @@ const className = 'piechart';
 export default class Chart {
     constructor() {
         this.data = null;
-        this.areaElement = div({ className });
+        this.areaElement = div({ className }, []);
     }
     reset() {
         this.areaElement.innerHTML = "";
@@ -47,7 +47,7 @@ export default class Chart {
     makeSvgElement() {
         if (this.data === null) throw "data가 설정되지 않습니다.";
         const segmentations = this.makeSegmentation();
-        // segmentations[0].setAttribute('filter', 'url(#f1)');    // 필터, (하지만 그다지 안 이쁨..)
+        segmentations[0].setAttribute('filter', 'url(#f1)');    // 필터, (하지만 그다지 안 이쁨..)
         const svgElement =
             svg(
                 {
