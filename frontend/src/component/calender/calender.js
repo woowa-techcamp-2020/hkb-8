@@ -1,6 +1,6 @@
 import { createEl } from "../../utils/createElement";
 import { div } from "../../utils/element";
-import { appendChildren } from "../../utils/appendChildren";
+import { appendArray } from "../../utils/handleElement";
 import './calender.scss'
 
 export class Calender {
@@ -101,7 +101,7 @@ export class Calender {
     }
 
     createCalender() {
-        appendChildren(this.calenderSection, this.createCalenderWrap());
+        appendArray(this.calenderSection, [this.createCalenderWrap()]);
     }
 
     render() {
