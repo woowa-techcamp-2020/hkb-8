@@ -66,15 +66,20 @@ const CREATE_RECORD_TB = `
     );
 `;
 
-const INSERT_RECORD_TB = `INSERT INTO record_tb(payment_at, category_no, payment_method_no, money, content) VALUES(?, ?, ?, ?, ?);`;
+const INSERT_RECORD_TB = `INSERT INTO record_tb(payment_at, member_no, category_no, payment_method_no, money, content) VALUES(?, ?, ?, ?, ?, ?);`;
+const UPDATE_RECORD_TB = `
+    UPDATE record_tb
+    SET payment_at=?, member_no=?, category_no=?, payment_method_no=?, money=?, content=?, is_deleted=?
+    where no = ?;
+`;
 
 const SELECT_RECORD_INFO = `
-    select payment_at, member_tb.email, category_tb.type, category_tb.name, payment_method_tb.name, money, content 
+    select payment_at as paymentAt, member_tb.email, category_tb.type as categoryType, category_tb.name, payment_method_tb.name, money, content 
     from record_tb
         INNER JOIN member_tb on record_tb.member_no = member_tb.no
         inner join payment_method_tb on payment_method_tb.no = record_tb.payment_method_no
         inner join category_tb on category_tb.no = record_tb.category_no
-    where member_tb.no = ? 
+    where member_tb.email = ? 
         AND record_tb.is_deleted = 0
         AND category_tb.is_deleted = 0
         AND payment_method_tb.is_deleted = 0
