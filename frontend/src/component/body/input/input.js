@@ -1,6 +1,6 @@
 import './input.scss';
 import { createEl } from '../../../utils/createElement';
-import { appendChildren } from '../../../utils/appendChildren';
+import { appendArray } from '../../../utils/handleElement';
 import { clickDeleteInputInfoBtn, clickIncomeBtn, clickOutcomeBtn } from './inputHandler.js';
 import { div, input, select, option } from '../../../utils/element';
 import { func } from './inputHandler';
@@ -60,7 +60,7 @@ export class Input {
     createInput() {
         const inputBoxWrap = this.createInputBoxWrap();
         // console.log(inputBoxWrap);
-        appendChildren(this.inputSection, inputBoxWrap);
+        appendArray(this.inputSection, [inputBoxWrap]);
     }
 
     render() {

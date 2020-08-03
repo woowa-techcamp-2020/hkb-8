@@ -1,6 +1,6 @@
 import './tab.scss';
 import { createEl } from '../../../utils/createElement';
-import { appendChildren } from '../../../utils/appendChildren';
+import { appendArray } from '../../../utils/handleElement';
 import { clickHistory, clickCalender, clickStatistics, clickLeftArrow, clickRightArrow } from './tabHandler';
 import { Calender } from "../../calender/calender";
 
@@ -28,11 +28,11 @@ export class ListTab {
         this.listTapStatisticsWrap = createEl('div', 'list-tap-statistics-wrap list', '', { onclick: e => this.clickHandler(e, '/chart') });
         this.listTapStatistics = createEl('div', 'list-tap-statistics', '통계', {});
 
-        appendChildren(this.listTapWrap, this.listTapHistoryWrap, this.listTapCalenderWrap, this.listTapStatisticsWrap);
-        appendChildren(this.listTapHistoryWrap, this.listTapHistory);
-        appendChildren(this.listTapCalenderWrap, this.listTapCalender);
-        appendChildren(this.listTapStatisticsWrap, this.listTapStatistics);
-        appendChildren(this.listTapSection, this.listTapWrap);
+        appendArray(this.listTapWrap, [this.listTapHistoryWrap, this.listTapCalenderWrap, this.listTapStatisticsWrap]);
+        appendArray(this.listTapHistoryWrap, [this.listTapHistory]);
+        appendArray(this.listTapCalenderWrap, [this.listTapCalender]);
+        appendArray(this.listTapStatisticsWrap, [this.listTapStatistics]);
+        appendArray(this.listTapSection, [this.listTapWrap]);
     }
     clickHandler(e, path) {
         // const path = getCurrentPath(e, path);
@@ -71,8 +71,8 @@ export class MonthTab {
 
         this.rightArrow = createEl('div', 'right-arrow next', '⇨', { onclick: clickRightArrow });
 
-        appendChildren(this.monthTapWrap, this.leftArrow, this.selectedMonth, this.rightArrow);
-        appendChildren(this.monthTapSection, this.monthTapWrap);
+        appendArray(this.monthTapWrap, [this.leftArrow, this.selectedMonth, this.rightArrow]);
+        appendArray(this.monthTapSection, [this.monthTapWrap]);
 
         this.leftArrow.addEventListener("click", () => {
             const calendarComponent = this.router.viewMap.get('/calender');
