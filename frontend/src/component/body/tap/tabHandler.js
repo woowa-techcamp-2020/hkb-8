@@ -14,9 +14,9 @@ export const clickStatistics = function (e) {
 };
 
 export const clickLeftArrow = function (e) {
-    console.log(e.target);
+    // console.log(e.target);
 };
 
 export const clickRightArrow = function (e) {
-    console.log(e.target);
+    // console.log(e.target);
 };

@@ -1,0 +1,57 @@
+.calender-section {
+  font-family: 'Lato', "sans-serif";
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+
+  .calendar-wrap {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+
+    .weekends {
+      display: flex;
+      flex-direction: row;
+      text-align: center;
+      background-color: #1bb9b2;
+      border-radius: 10px 10px 0px 0px;
+
+      div {
+        width: 14.28%;
+        padding: 20px 0px;
+      }
+    }
+
+    .days {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      text-align: center;
+
+      div {
+        width: 14.28%;
+        margin-bottom: 10px;
+        padding: 15px 0px;
+
+        &:hover {
+          background-color: white;
+          transition: all 0.4s;
+          cursor: pointer;
+        }
+      }
+
+      .today {
+        background-color: white;
+      }
+
+      .prev-date, .next-date {
+        color:darkgray;
+      }
+    }
+  }
+
+}

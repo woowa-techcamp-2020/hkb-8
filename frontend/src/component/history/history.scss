@@ -1,0 +1,106 @@
+.history-section {
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+
+  .history-wrap {
+    display: flex;
+    flex-direction: column;
+    width:45%;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+
+    .history {
+      display: flex;
+      flex-direction: column;
+      .history-day-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+
+        .history-day {
+          color: gray
+        }
+        .date-money-wrap {
+          display: flex;
+          flex-direction: row;
+          .day-income {
+            color: #219aff;
+            margin-right: 10px;
+          }
+          .day-outcome {
+            color: #58c1b6;
+          }
+        }
+      }
+
+      .history-day-list-wrap {
+        display: flex;
+        flex-direction: column;
+
+        .history-day-item {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: baseline;
+
+          .history-day-item-left {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            width: 20%;
+            .history-day-income-category {
+              padding: 5px;
+              background-color: #85c1b9;
+              color: white;
+              border-radius: 10px;
+              margin-right: 10px;
+            }
+
+            .history-day-outcome-category {
+              padding: 5px;
+              background-color: #219aff;
+              color: white;
+              border-radius: 10px;
+              margin-right: 10px;
+            }
+            .history-day-content {
+
+            }
+          }
+
+          .history-repair {
+            //display: none;
+            cursor: pointer;
+
+            &:hover {
+              color: red;
+            }
+          }
+          .history-day-item-right {
+            display: flex;
+            flex-direction: row;
+            .payment {
+              color: gray;
+              margin-right: 10px;
+            }
+            .income-money {
+              color: #58c1b6;
+            }
+            .outcome-money {
+              color: #219aff;
+            }
+          }
+        }
+      }
+
+      .line {
+        padding: 10px;
+        border-bottom: 1px solid darkgray;
+      }
+    }
+  }
+}
