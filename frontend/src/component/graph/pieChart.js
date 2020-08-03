@@ -38,6 +38,9 @@ export default class Chart {
         this.data = null;
         this.areaElement = div({ className });
     }
+    reset() {
+        this.areaElement.innerHTML = "";
+    }
     setData(data) {
         this.data = data.concat().reverse();
     }
@@ -148,6 +151,7 @@ export default class Chart {
         return result;
     }
     render() {
+        this.reset();
         this.makeSvgElement();
         return this.areaElement;
     }
