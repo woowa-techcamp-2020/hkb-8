@@ -41,4 +41,19 @@ export default {
     animate(attr) {
         return createNS("animate", attr);
     },
+    defs(attr, ...children) {
+        return createNS('defs', attr, ...children);
+    },
+    filter(attr, ...children) {
+        return createNS('filter', attr, ...children);
+    },
+    feOffset(attr) {
+        return createNS('feOffset', attr);
+    },
+    feGaussianBlur(attr) {
+        return createNS('feGaussianBlur', attr);
+    },
+    feBlend(attr) {
+        return createNS('feBlend', attr);
+    },
 };
