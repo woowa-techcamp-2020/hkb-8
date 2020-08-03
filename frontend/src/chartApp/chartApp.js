@@ -18,15 +18,10 @@ const DATA = [
 ];
 
 
-const app = document.querySelector('#app'); // 최상단 노드
 const headerSection = new Header();
-const bodySection = new Body(new MonthTab, new ListTab);
 const barGraph = new BarGraph(DATA);
 const pieChart = new PieChart();
 pieChart.setData(DATA);
+const bodySection = new Body(headerSection, new MonthTab, new ListTab, pieChart, barGraph);
 
-app.appendChild(headerSection.render());
-app.appendChild(bodySection.render());
-app.appendChild(pieChart.render());
-app.appendChild(barGraph.render());
-
+export default bodySection;

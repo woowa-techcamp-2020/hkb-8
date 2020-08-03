@@ -7,10 +7,8 @@ import { History } from "../component/history/history";
 
 const app = document.querySelector('#app'); // 최상단 노드
 const headerSection = new Header();
-const bodySection = new Body(new MonthTab, new ListTab, new Input, new History);
-
 headerSection.createHeader();
-app.appendChild(headerSection.render());
-
+const bodySection = new Body(headerSection, new MonthTab, new ListTab, new Input, new History);
 bodySection.createBody();
-app.appendChild(bodySection.render());
+
+export default bodySection;
