@@ -14,6 +14,7 @@ export function appendText(element, text) {
 }
 
 export function appendArray(element, children) {
+
     children.forEach((child) => {
         if (Array.isArray(child)) {
             appendArray(element, child);

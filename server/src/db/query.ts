@@ -84,7 +84,7 @@ const SELECT_RECORD_INFO = `
         AND category_tb.is_deleted = 0
         AND payment_method_tb.is_deleted = 0
         AND month(record_tb.payment_at) = ?
-    order by payment_at desc;
+    order by record_tb.payment_at desc;
 `;
 
 const RESET_TB = `delete from ?`;
