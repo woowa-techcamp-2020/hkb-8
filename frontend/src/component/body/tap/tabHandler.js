@@ -46,9 +46,9 @@ export const clickStatistics = function (e) {
 };
 
 export const clickLeftArrow = function (e) {
-    console.log(e.target);
+    console.log("leftArrow");
 };
 
 export const clickRightArrow = function (e) {
-    console.log(e.target);
+    console.log("rightArrow");
 };

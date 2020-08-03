@@ -11,6 +11,7 @@ viewMap.set('/', historyApp);
 viewMap.set('/chart', chartApp);
 viewMap.set('/calender', calenderApp);
 
+window.viewMap = viewMap;
 
 function popStateHandler({ state }) {
     console.log(state);

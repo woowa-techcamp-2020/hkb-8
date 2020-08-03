@@ -12,6 +12,9 @@ module.exports = {
         path: path.resolve('./dist'),
         filename: '[name].js',
     },
+    devServer: {
+        host: '0.0.0.0'         // 같은 와이파이, 다른 컴에서 접속가능
+    },
     module: {
         rules: [
             {

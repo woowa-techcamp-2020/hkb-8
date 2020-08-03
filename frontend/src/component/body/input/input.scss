@@ -19,12 +19,10 @@
       .text {
         //border-bottom:1px solid darkgray;
         //padding: 0px 50px;
-
       }
       .title {
         margin-right: 15px;
         font-weight: 600;
-
       }
       .wrap {
         display: flex;
@@ -60,38 +58,45 @@
       .input-middle {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        //justify-content: space-between;
         margin-bottom: 10px;
         .select {
           border-bottom: 1px solid gray;
           font-size: 15px;
-          padding: 0px 80px;
           color: gray;
         }
         .input-date-wrap {
+          flex-grow: 1;
 
           .input-date-title {
 
           }
           .input-date-text {
             border-bottom:1px solid darkgray;
-            padding: 0px 30px;
+            padding: 0% 10%;
+
           }
         }
         .input-category-wrap {
+          flex-grow: 1;
+
           .input-category-title {
 
           }
           .input-category-select {
+            padding: 0% 10%;
 
           }
 
         }
         .input-payment-select-wrap {
+          flex-grow: 1;
+
           .input-payment-select-title {
 
           }
           .input-payment-select {
+            padding: 0% 10%;
 
           }
         }
@@ -100,23 +105,26 @@
         display: flex;
         flex-direction: row;
         margin-bottom: 10px;
-        justify-content: space-between;
+        //justify-content: space-between;
         .input-money-wrap {
+          flex-grow: 1;
           .input-money-title {
 
           }
           .input-money-text {
             border-bottom:1px solid darkgray;
-            padding: 0px 100px;
+            padding: 0% 10%;
           }
         }
         .input-content-wrap {
+          flex-grow: 1;
+
           .input-content-title {
 
           }
           .input-content-text {
             border-bottom:1px solid darkgray;
-            padding: 0px 100px;
+            padding: 0% 10%;
           }
         }
       }

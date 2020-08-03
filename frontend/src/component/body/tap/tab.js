@@ -2,7 +2,7 @@ import './tab.scss';
 import { createEl } from '../../../utils/createElement';
 import { appendChildren } from '../../../utils/appendChildren';
 import { clickHistory, clickCalender, clickStatistics, clickLeftArrow, clickRightArrow } from './tabHandler';
-
+import { Calender } from "../../calender/calender";
 
 export class ListTab {
     constructor() {
@@ -46,6 +46,7 @@ export class ListTab {
 export class MonthTab {
     constructor() {
         this.monthTapSection = createEl('div', 'month-tap-section', '', {});
+        this.currentMonth = new Date().getMonth() + 1;
 
     }
     setData(data) {
@@ -58,16 +59,32 @@ export class MonthTab {
 
     createMonthTapNodes() {
         this.monthTapWrap = createEl('div', 'month-tap-wrap', '', {});
-        this.leftArrow = createEl('div', 'left-arrow', '⇦', { onclick: clickLeftArrow });
-        this.selectedMonth = createEl('div', 'selected-month', '6월', {});
-        this.rightArrow = createEl('div', 'right-arrow', '⇨', { onclick: clickRightArrow });
+        this.leftArrow = createEl('div', 'left-arrow prev', '⇦', { onclick: clickLeftArrow });
+        this.selectedMonth = createEl('div', 'selected-month date', `${this.currentMonth}`, {});
+
+        this.rightArrow = createEl('div', 'right-arrow next', '⇨', { onclick: clickRightArrow });
 
         appendChildren(this.monthTapWrap, this.leftArrow, this.selectedMonth, this.rightArrow);
         appendChildren(this.monthTapSection, this.monthTapWrap);
+
+        this.leftArrow.addEventListener("click", () => {
+            const calendarComponent = window.viewMap.get('/calender').components.find(one => one instanceof Calender);
+            calendarComponent.moveMonth(-1);
+            calendarComponent.renderCalendar();
+            this.currentMonth--;
+            this.render();
+        });
+
+        this.rightArrow.addEventListener("click", () => {
+            const calendarComponent = window.viewMap.get('/calender').components.find(one => one instanceof Calender);
+            calendarComponent.moveMonth(1);
+            calendarComponent.renderCalendar();
+            this.currentMonth++;
+            this.render();
+        });
     }
 
     render() {
-        // return this.baseElement;
         this.reset();
         this.createMonthTapNodes();
 

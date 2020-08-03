@@ -9,6 +9,7 @@ export const h2 = (...args) => makeElement('h2', ...args);
 export const h3 = (...args) => makeElement('h3', ...args);
 export const header = (...args) => makeElement('header', ...args);
 export const p = (...args) => makeElement('p', ...args);
+export const hr = (...args) => makeElement('hr', ...args);
 export const span = (...args) => makeElement('span', ...args);
 export const ul = (...args) => makeElement('ul', ...args);
 export const li = (...args) => makeElement('li', ...args);

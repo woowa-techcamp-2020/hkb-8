@@ -2,6 +2,7 @@ import { Header } from '../component/header/header';
 import { Body } from '../component/body/body';
 import { ListTab, MonthTab } from '../component/body/tap/tab';
 import BarGraph from '../component/graph/barGraph.js';
+// import PieChart from '../component/graph/pieChart.js';
 import PieChart from '../component/graph/pieChart.js';
 
 import './chartApp.scss';
@@ -19,14 +20,8 @@ const DATA = [
 
 const headerSection = new Header();
 const barGraph = new BarGraph(DATA);
-const bodySection = new Body(headerSection, new MonthTab, new ListTab, barGraph);
-
-
-// const app = document.querySelector('#app'); // 최상단 노드
-// app.appendChild(headerSection.render());
-// app.appendChild(bodySection.render());
-// app.appendChild(PieChart(DATA));
-// app.appendChild(barGraph.render());
+const pieChart = new PieChart();
+pieChart.setData(DATA);
+const bodySection = new Body(headerSection, new MonthTab, new ListTab, pieChart, barGraph);
 
 export default bodySection;
-
