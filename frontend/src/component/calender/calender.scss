@@ -32,7 +32,7 @@
       align-items: center;
       text-align: center;
 
-      div {
+      .day {
         width: 14.28%;
         margin-bottom: 10px;
         padding: 15px 0px;
@@ -46,6 +46,27 @@
 
       .today {
         background-color: white;
+      }
+        .day {
+        //background-color: white;
+        display: flex;
+        flex-direction: column;
+
+        .day-in-put-money {
+          display: flex;
+          flex-direction: column;
+          padding-top: 35px;
+          font-size: 13px;
+
+          .day-income {
+            margin-bottom: 10px;
+            color: #58c1b6;
+
+          }
+          .day-outcome {
+            color: #219aff;
+          }
+        }
       }
 
       .prev-date, .next-date {

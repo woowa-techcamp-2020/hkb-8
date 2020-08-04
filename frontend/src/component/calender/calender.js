@@ -65,7 +65,7 @@ export class Calender {
         let days = '';
 
         for (let x = firstDayIndex; x > 0; x--) {
-            days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
+            days += `<div class="prev-date day">${prevLastDay - x + 1}</div>`;
         }
 
         for (let i = 1; i <= lastDay; i++) {
@@ -73,14 +73,24 @@ export class Calender {
                 i === new Date().getDate() &&
                 date.getMonth() === new Date().getMonth()
             ) {
-                days += `<div class="today">${i}</div>`;
+                days += `<div class="today day">${i}
+<div class="day-in-put-money">
+<div class="day-income">+3,000원</div>
+<div class="day-outcome">-4,000원</div>
+</div>
+</div>`;
             } else {
-                days += `<div>${i}</div>`;
+                days += `<div class="other-day day">${i}
+<div class="day-in-put-money">
+<div class="day-income">+3,000원</div>
+<div class="day-outcome">-4,000원</div>
+</div>
+</div>`;
             }
         }
 
         for (let j = 1; j <= nextDays; j++) {
-            days += `<div class="next-date">${j}</div>`;
+            days += `<div class="next-date day">${j}</div>`;
             monthDays.innerHTML = days;
         }
     }
