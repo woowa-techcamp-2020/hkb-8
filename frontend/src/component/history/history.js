@@ -31,13 +31,13 @@ export class History {
                 preDate = oneDate.getDate();
                 result.push(oneDay);
             }
-            const { categoryType, name, money, content } = one;
+            const { categoryType, categoryName, paymentMethodName, money, content } = one;
             if (categoryType === "지출") {
                 oneDay.totalOutcome += parseInt(money);
             } else {
                 oneDay.totalIncome += parseInt(money);
             }
-            oneDay.items.push({ categoryType, name, money, content });
+            oneDay.items.push({ categoryType, categoryName, paymentMethodName, money, content });
         });
         return result;
     }
@@ -78,11 +78,11 @@ export class History {
     createOneDateDetail(detailData) {
         return div({ className: 'history-day-item line' },
             div({ className: 'history-day-item-left' },
-                div({ className: `history-day-${detailData.categoryType === "수입" ? "income" : "outcome"}-category` }, '쇼핑/뷰티'), // 카테고리
+                div({ className: `history-day-${detailData.categoryType === "수입" ? "income" : "outcome"}-category` }, detailData.categoryName), // 카테고리
                 div({ className: 'history-day-content' }, detailData.content)),           // 컨텐츠
             div({ className: 'history-repair' }, '수정'),
             div({ className: 'history-day-item-right' },
-                div({ className: 'payment' }, detailData.name),                      // 결제수단
+                div({ className: 'payment' }, detailData.paymentMethodName),                      // 결제수단
                 div({ className: `${detailData.categoryType === "수입" ? "income" : "outcome"}-money` }, detailData.money)));            // 금액
     }
 
