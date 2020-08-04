@@ -15,11 +15,14 @@ export class Input {
     setData(data) {
         this.data = data;
     }
-    getPaymentMethodData() {
+    async getPaymentMethodData() {
+        const paymentMethods = await api.get("http://localhost:3000/api/payment/method/1").then(res => res.json());
+        this.paymentMethods = paymentMethods;
 
     }
 
     reset() {
+        this.paymentMethods;
         this.inputSection.innerHTML = '';
     }
 
@@ -56,9 +59,7 @@ export class Input {
                     div({ className: 'input-payment-select-wrap wrap' },
                         div({ className: 'input-payment-select-title title' }, '결제수단'),
                         select({ className: 'input-payment-select select' },
-                            option({ className: 'option-list' }, '선택해주세요'),
-                            option({ className: 'option-list' }, '선택해주세요'),
-                            option({ className: 'option-list' }, '선택해주세요'),
+                            ...this.createSelectOptions(this.paymentMethods)
                         ))),
                 div({ className: 'input-bottom' },
                     div({ className: 'input-money-wrap wrap' },
@@ -73,19 +74,19 @@ export class Input {
     }
     createSelectOptions(data) {
         const result = [option({ className: 'option-list', select: true, disable: true, hidden: true }, '선택해주세요')];
-        const options = data.map(o => option({ className: 'option-list', value: data.no }, o.name));
+        const options = data.map(o => option({ className: 'option-list', value: data.no }, o.paymentMethodName));
         result.push(...options);
         return result;
     }
 
-    createInput() {
-        const inputBoxWrap = this.createInputBoxWrap();
-        // console.log(inputBoxWrap);
+    async createInput() {
+        await this.getPaymentMethodData();
+        const inputBoxWrap = await this.createInputBoxWrap();
         appendArray(this.inputSection, [inputBoxWrap]);
     }
 
     render() {
-        // return this.baseElement;
+        this.getPaymentMethodData();
         this.reset();
         this.createInput();
 

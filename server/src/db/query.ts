@@ -32,6 +32,8 @@ const CREATE_PAYMENT_METHOD_TB = `
 
 const INSERT_PAYMENT_METHOD_TB = `INSERT INTO payment_method_tb(name, member_no) VALUES(?, ?);`;
 
+const SELECT_PAYMENT_METHOD_TB = `select no, name as paymentMethodName from payment_method_tb where member_no = ? and is_deleted = 0`;
+
 // ================================== category_tb =========================
 const CREATE_CATEGORY_TB = `
     CREATE TABLE IF NOT EXISTS category_tb (
@@ -74,7 +76,10 @@ const UPDATE_RECORD_TB = `
 `;
 
 const SELECT_RECORD_INFO = `
-    select payment_at as paymentAt, member_tb.email, category_tb.type as categoryType, category_tb.name, payment_method_tb.name, money, content 
+    select 
+        payment_at as paymentAt, member_tb.email, category_tb.type as categoryType, 
+        category_tb.name as categoryName, payment_method_tb.name as paymentMethodName, 
+        money, content 
     from record_tb
         INNER JOIN member_tb on record_tb.member_no = member_tb.no
         inner join payment_method_tb on payment_method_tb.no = record_tb.payment_method_no
@@ -110,6 +115,7 @@ export default {
     SELECT_MEMBER_TB_EMAIL_PASSWORD,
     CREATE_PAYMENT_METHOD_TB,
     INSERT_PAYMENT_METHOD_TB,
+    SELECT_PAYMENT_METHOD_TB,
     CREATE_CATEGORY_TB,
     INSERT_CATEGORY_TB,
     CREATE_RECORD_TB,
