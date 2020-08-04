@@ -1,7 +1,7 @@
 import './input.scss';
 import { createEl } from '../../../utils/createElement';
 import { appendArray } from '../../../utils/handleElement';
-import { clickDeleteInputInfoBtn, clickIncomeBtn, clickOutcomeBtn, keyupMoneyInput } from './inputHandler.js';
+import { clickDeleteInputInfoBtn, clickIncomeBtn, clickOutcomeBtn, keyupMoneyInput, clickSubmitBtn } from './inputHandler.js';
 import { div, input, select, option } from '../../../utils/element';
 import { func } from './inputHandler';
 import api from '../../../utils/api';
@@ -42,12 +42,12 @@ export class Input {
                     div({ className: 'input-category-wrap wrap' },
                         div({ className: 'input-category-title title' }, '카테고리'),
                         select({ className: 'input-category-select income-select select' },
-                            option({ className: 'option-list', select: true, disable: true, hidden: true }, '선택해주세요'),
+                            option({ className: 'option-list', selected: true, disabled: true, hidden: true }, '선택해주세요'),
                             option({ className: 'option-list', value: "1" }, '월급'),
                             option({ className: 'option-list', value: "2" }, '용돈'),
                             option({ className: 'option-list', value: "3" }, '기타수입')),
                         select({ className: 'input-category-select outcome-select select hidden' },
-                            option({ className: 'option-list', select: true, disable: true, hidden: true }, '선택해주세요'),
+                            option({ className: 'option-list', selected: true, disabled: true, hidden: true }, '선택해주세요'),
                             option({ className: 'option-list', value: "4" }, '식비'),
                             option({ className: 'option-list', value: "5" }, '생활'),
                             option({ className: 'option-list', value: "6" }, '쇼핑/뷰티'),
@@ -58,7 +58,7 @@ export class Input {
                     ),
                     div({ className: 'input-payment-select-wrap wrap' },
                         div({ className: 'input-payment-select-title title' }, '결제수단'),
-                        select({ className: 'input-payment-select select' },
+                        select({ className: 'input-payment-select payment-method-select select' },
                             ...this.createSelectOptions(this.paymentMethods)
                         ))),
                 div({ className: 'input-bottom' },
@@ -68,25 +68,28 @@ export class Input {
                     div({ className: 'input-content-wrap wrap' },
                         div({ className: 'input-content-title title' }, '내용'),
                         input({ className: 'input-content-text text' })))),
-            div({ className: 'input-submit-btn' }, '확 인'));
+            div({ className: 'input-submit-btn', onclick: clickSubmitBtn }, '확 인'));
 
         return InputBoxWrap;
     }
+    submitHandler() {
+
+    }
+
     createSelectOptions(data) {
-        const result = [option({ className: 'option-list', select: true, disable: true, hidden: true }, '선택해주세요')];
-        const options = data.map(o => option({ className: 'option-list', value: data.no }, o.paymentMethodName));
+        const result = [option({ className: 'option-list', selected: true, disabled: true, hidden: true }, '선택해주세요')];
+        const options = data.map(o => option({ className: 'option-list', value: o.no }, o.paymentMethodName));
         result.push(...options);
         return result;
     }
 
     async createInput() {
         await this.getPaymentMethodData();
-        const inputBoxWrap = await this.createInputBoxWrap();
+        const inputBoxWrap = this.createInputBoxWrap();
         appendArray(this.inputSection, [inputBoxWrap]);
     }
 
     render() {
-        this.getPaymentMethodData();
         this.reset();
         this.createInput();
 
