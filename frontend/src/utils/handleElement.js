@@ -81,8 +81,8 @@ export function makeElement(type, firstChild, ...otherChildren) {
         Object.keys(firstChild).forEach((propertyName) => {
             if (propertyName in element) {
                 /**
-				 * key : property name
-				 * value : property value
+                 * key : property name
+                 * value : property value
 				 */
                 const value = firstChild[propertyName];
                 if (propertyName === 'style') {
@@ -94,7 +94,7 @@ export function makeElement(type, firstChild, ...otherChildren) {
                     propertyName === 'className' || propertyName === 'draggable' ||
                     propertyName === 'disabled' || propertyName === 'placeholder' ||
                     propertyName === 'maxLength' || propertyName === 'value' ||
-                    propertyName === 'size'
+                    propertyName === 'size' || propertyName === 'hidden' || propertyName === 'selected'
                 ) {
                     element[propertyName] = value;
                 }

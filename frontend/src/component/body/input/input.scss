@@ -47,6 +47,7 @@
               border-radius: 4px;
             cursor: pointer;
 
+            
           }
         }
         .delete-input-info-btn {
@@ -139,4 +140,12 @@
       cursor: pointer;
     }
   }
+}
+
+.hidden {
+  display:none;
+}
+
+.clicked {
+  background-color: #000;
 }
