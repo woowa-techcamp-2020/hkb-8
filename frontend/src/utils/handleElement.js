@@ -89,7 +89,13 @@ export function makeElement(type, firstChild, ...otherChildren) {
                     setStyles(element, value);
                 } else if (propertyName === 'dataset') {
                     setDataAttributes(element, value);
-                } else if (typeof value === 'function' || propertyName === 'className' || propertyName === 'draggable' || propertyName === 'disabled' || propertyName === 'placeholder' || propertyName === 'maxLength') {
+                } else if (
+                    typeof value === 'function' || propertyName === 'type' ||
+                    propertyName === 'className' || propertyName === 'draggable' ||
+                    propertyName === 'disabled' || propertyName === 'placeholder' ||
+                    propertyName === 'maxLength' || propertyName === 'value' ||
+                    propertyName === 'size'
+                ) {
                     element[propertyName] = value;
                 }
             } else {

@@ -1,7 +1,7 @@
 import './input.scss';
 import { createEl } from '../../../utils/createElement';
 import { appendArray } from '../../../utils/handleElement';
-import { clickDeleteInputInfoBtn, clickIncomeBtn, clickOutcomeBtn } from './inputHandler.js';
+import { clickDeleteInputInfoBtn, clickIncomeBtn, clickOutcomeBtn, keyupMoneyInput } from './inputHandler.js';
 import { div, input, select, option } from '../../../utils/element';
 import { func } from './inputHandler';
 
@@ -31,7 +31,7 @@ export class Input {
                 div({ className: 'input-middle' },
                     div({ className: 'input-date-wrap wrap' },
                         div({ className: 'input-date-title title' }, '날짜'),
-                        input({ className: 'input-date-text text' })),
+                        input({ className: 'input-date-text text', type: 'date' })),
                     div({ className: 'input-category-wrap wrap' },
                         div({ className: 'input-category-title title' }, '카테고리'),
                         select({ className: 'input-category-select select' },
@@ -48,7 +48,7 @@ export class Input {
                 div({ className: 'input-bottom' },
                     div({ className: 'input-money-wrap wrap' },
                         div({ className: 'input-money-title title' }, '금액'),
-                        input({ className: 'input-money-text text' })),
+                        input({ className: 'input-money-text text', onkeyup: keyupMoneyInput, placeholder: 0 })),
                     div({ className: 'input-content-wrap wrap' },
                         div({ className: 'input-content-title title' }, '내용'),
                         input({ className: 'input-content-text text' })))),
