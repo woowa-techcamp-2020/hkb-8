@@ -47,6 +47,8 @@
           justify-content: space-between;
           align-items: baseline;
 
+          
+
           .history-day-item-left {
             display: flex;
             flex-direction: row;
@@ -102,5 +104,12 @@
         border-bottom: 1px solid darkgray;
       }
     }
+  }
+}
+
+.input-money-wrap {
+
+  .input-money-text {
+    text-align: right;
   }
 }
