@@ -1,18 +1,18 @@
-import { createEl } from "../../utils/createElement";
-import { div } from "../../utils/element";
-import { appendArray } from "../../utils/handleElement";
-import './calender.scss'
+import { createEl } from '../../utils/createElement';
+import { div } from '../../utils/element';
+import { appendArray } from '../../utils/handleElement';
+import './calender.scss';
 import json from '../../utils/mockData.json';
+import { TotalInOutcome } from '../totalInOutcome/TotalInOutcome';
 
 export class Calender {
     constructor() {
         this.calenderSection = createEl('div', 'calender-section', '', {});
         this.date = new Date();
-
-        this.incomeMoneyMap = new Map();
-        this.incomeMoneyMap = json.incomeMoneyObj;
-        this.outcomeMoneyMap = new Map();
         this.monthModel;
+        this.calcTotalIncome = 0;
+        this.calcTotalOutcome = 0;
+        this.TotalMoney = new TotalInOutcome();
     }
     moveMonth(value) {
         this.date.setMonth(this.date.getMonth() + value);
@@ -36,7 +36,7 @@ export class Calender {
         const date = new Date(year, month, 1);
 
 
-        const monthDays = this.calenderSection.querySelector(".days");
+        const monthDays = this.calenderSection.querySelector('.days');
 
         const lastDay = new Date(year, month + 1, 0).getDate();
         const prevLastDay = new Date(year, month, 0).getDate();
@@ -58,15 +58,19 @@ export class Calender {
     createPrevDays(prevLastDay, firstDayIndex) {
         console.log(prevLastDay, firstDayIndex);
         let prevDay = prevLastDay - firstDayIndex + 1;
-        let daysInnerHtml = "";
+        let daysInnerHtml = '';
         for (prevDay; prevDay <= prevLastDay; prevDay++) {
-            daysInnerHtml += `<div class="prev-date day">${prevDay}</div>`;
+            daysInnerHtml += `<div class="prev-date day">${prevDay}
+                        <div class="day-in-put-money">
+                        <div class="day-income">ㅤ</div>
+                        <div class="day-outcome">ㅤ</div>
+                        </div></div>`;
         }
         return daysInnerHtml;
     }
     createCurrentDays(lastDay, monthModel) {
         console.log(monthModel);
-        let daysInnerHtml = "";
+        let daysInnerHtml = '';
         const todayDate = new Date();
         const [currentMonth, currentDay] = [todayDate.getMonth() + 1, todayDate.getDate()];
 
@@ -75,29 +79,36 @@ export class Calender {
 
         for (let i = 1; i <= lastDay; i++) {
             const { totalIncome, totalOutcome } = monthModel.getTotal(i);
+            this.calcTotalIncome += totalIncome;
+            this.calcTotalOutcome += totalOutcome;
             if (drawingMonth === currentMonth && i === currentDay) {
-                daysInnerHtml += `<div class="today day">${i}
+                daysInnerHtml += `<div class="today day"><span class="number">${i}</span>
                         <div class="day-in-put-money">
-                        <div class="day-income">${totalIncome || "ㅤ"}</div>
-                        <div class="day-outcome">${totalOutcome || "ㅤ"}</div>
+                        <div class="day-income">${totalIncome || 'ㅤ'}</div>
+                        <div class="day-outcome">${totalOutcome || 'ㅤ'}</div>
                         </div>
                         </div>`;
             } else {
                 daysInnerHtml += `<div class="other-day day">${i}
                         <div class="day-in-put-money">
-                        <div class="day-income">${totalIncome || "ㅤ"}</div>
-                        <div class="day-outcome">${totalOutcome || "ㅤ"}</div>
+                        <div class="day-income">${totalIncome || 'ㅤ'}</div>
+                        <div class="day-outcome">${totalOutcome || 'ㅤ'}</div>
                         </div>
                         </div>`;
             }
         }
         return daysInnerHtml;
     }
+
     createNextDays(nextDays) {
-        let daysInnerHtml = "";
+        let daysInnerHtml = '';
 
         for (let j = 1; j <= nextDays; j++) {
-            daysInnerHtml += `<div class="next-date day">${j}</div>`;
+            daysInnerHtml += `<div class="next-date day">${j}
+                        <div class="day-in-put-money">
+                        <div class="day-income">ㅤ</div>
+                        <div class="day-outcome">ㅤ</div>
+                        </div></div>`;
         }
 
         return daysInnerHtml;
@@ -120,7 +131,7 @@ export class Calender {
     }
 
     createCalender() {
-        appendArray(this.calenderSection, [this.createCalenderWrap()]);
+        appendArray(this.calenderSection, [this.TotalMoney.render(), this.createCalenderWrap()]);
     }
 
     render(monthData) {
