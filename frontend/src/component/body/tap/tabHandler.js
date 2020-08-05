@@ -1,5 +1,4 @@
 
-
 export const clickHistory = function (e) {
     const path = getCurrentPath(e, '/history');
     const state = getStates(path);
@@ -19,9 +18,11 @@ export const clickStatistics = function (e) {
 };
 
 export const clickLeftArrow = function (e) {
-    console.log("left : " + e.target)
+    console.log("left : " + e.target);
+    model.deacreaseMonth();
 };
 
 export const clickRightArrow = function (e) {
     console.log("rightArrow");
+    model.increaseMonth();
 };

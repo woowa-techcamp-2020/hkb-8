@@ -27,7 +27,7 @@ window.model = model;
 
 // 라우터 생성
 const app = document.querySelector('#app'); // 최상단 노드
-const router = new Router(app);
+const router = new Router(app, model);
 window.router = router;
 
 

@@ -1,7 +1,8 @@
 
 
 export default class Router {
-    constructor(appElement) {
+    constructor(appElement, model) {
+        this.model = model;
         this.appElement = appElement;
         this.viewMap = new Map;
         this.bodyComponent = null;
@@ -27,11 +28,13 @@ export default class Router {
     pushState(path, state) {
         history.pushState(state, '', path);
     }
-    popStateHandler({ state }) {
+    async popStateHandler({ state }) {
+        const monthData = await this.model.getMonthData();
         const targetView = location.pathname;
         const viewComponent = this.viewMap.get(targetView);
+        this.model.subscribe(viewComponent);
         this.bodyComponent.setMutableComponents(viewComponent);
         app.innerHTML = "";
-        app.appendChild(this.bodyComponent.render());
+        app.appendChild(this.bodyComponent.render(monthData));
     }
 }

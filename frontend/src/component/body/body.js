@@ -21,15 +21,15 @@ export class Body {
         this.mutableComponents = components;
     }
 
-    createBody() {
+    createBody(monthModel) {
         const commons = this.commonComponents.map(component => component.render());
-        const mutable = this.mutableComponents.map(component => component.render());
+        const mutable = this.mutableComponents.map(component => component.render(monthModel));
         appendArray(this.bodySection, [...commons, ...mutable]);
     }
 
-    render() {
+    render(monthModel) {
         this.reset();
-        this.createBody();
+        this.createBody(monthModel);
 
         return this.bodySection;
     }
