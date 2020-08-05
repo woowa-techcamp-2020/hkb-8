@@ -2,11 +2,16 @@ import { createEl } from "../../utils/createElement";
 import { div } from "../../utils/element";
 import { appendArray } from "../../utils/handleElement";
 import './calender.scss'
+import json from '../../utils/mockData.json';
 
 export class Calender {
     constructor() {
         this.calenderSection = createEl('div', 'calender-section', '', {});
         this.date = new Date();
+
+        this.incomeMoneyMap = new Map();
+        this.incomeMoneyMap = json.incomeMoneyObj;
+        this.outcomeMoneyMap = new Map();
 
     }
     setData(data) {
@@ -19,6 +24,14 @@ export class Calender {
     reset() {
         this.calenderSection.innerHTML = '';
     }
+
+    getApiDayData() {
+        // todo: api요청으로 현재 월을 보내서 현재 월에 대한 모든 날짜의 수입, 지출 받아오기
+        // todo: 받아온 데이터를 incomeMoneyMap (key:일수,val:수입금액), outcomeMoneyMap 에 넣기(key:일수,val:지출금액)
+         }
+
+
+
     renderCalendar() {
         const date = this.date;
         date.setDate(1);
@@ -75,14 +88,14 @@ export class Calender {
             ) {
                 days += `<div class="today day">${i}
 <div class="day-in-put-money">
-<div class="day-income">+3,000원</div>
+<div class="day-income">+ ${this.incomeMoneyMap[i]}</div>
 <div class="day-outcome">-4,000원</div>
 </div>
 </div>`;
             } else {
                 days += `<div class="other-day day">${i}
 <div class="day-in-put-money">
-<div class="day-income">+3,000원</div>
+<div class="day-income">+ ${this.incomeMoneyMap[i]}</div>
 <div class="day-outcome">-4,000원</div>
 </div>
 </div>`;

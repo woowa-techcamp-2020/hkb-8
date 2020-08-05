@@ -55,6 +55,7 @@ export class MonthTab {
         this.monthTapSection = createEl('div', 'month-tap-section', '', {});
         this.currentMonth = new Date().getMonth() + 1;
 
+
     }
     setData(data) {
         this.data = data;
@@ -74,7 +75,8 @@ export class MonthTab {
         appendArray(this.monthTapWrap, [this.leftArrow, this.selectedMonth, this.rightArrow]);
         appendArray(this.monthTapSection, [this.monthTapWrap]);
 
-        this.leftArrow.addEventListener("click", () => {
+        this.leftArrow.addEventListener("click", e => {
+            if(this.currentMonth === 1) return;
             const calendarComponent = this.router.viewMap.get('/calender');
             calendarComponent.moveMonth(-1);
             calendarComponent.renderCalendar();
@@ -82,8 +84,8 @@ export class MonthTab {
             this.render();
         });
 
-        this.rightArrow.addEventListener("click", () => {
-            // TODO: adf
+        this.rightArrow.addEventListener("click", e => {
+            if(this.currentMonth === 12) return;
             const calendarComponent = this.router.viewMap.get('/calender');
             calendarComponent.moveMonth(1);
             calendarComponent.renderCalendar();
