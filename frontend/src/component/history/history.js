@@ -43,7 +43,6 @@ export class History {
     }
 
     setData(data) {
-        console.log("adf", data);
         this.data = data;
     }
 
