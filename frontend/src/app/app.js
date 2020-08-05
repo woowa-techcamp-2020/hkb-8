@@ -13,18 +13,18 @@ export default class HistoryComponent {
         this.inputComponent = new Input();
         this.historyComponent = new History();
     }
-    createElement() {
+    createElement(monthModel) {
         appendArray(this.baseElement, [
-            this.inputComponent.render(),
-            this.historyComponent.render()
+            this.inputComponent.render(monthModel),
+            this.historyComponent.render(monthModel)
         ]);
     }
     reset() {
         this.baseElement.innerHTML = "";
     }
-    render() {
+    render(monthModel) {
         this.reset();
-        this.createElement();
+        this.createElement(monthModel);
         return this.baseElement;
     }
 }

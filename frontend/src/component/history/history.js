@@ -50,11 +50,12 @@ export class History {
         this.historySection.innerHTML = '';
     }
 
-    async createHistoryWrap(data1) {
-        const data = await this.getData();
-        console.log(data);
+    createHistoryWrap(monthModel) {
+        const rr = [];
 
-        const rr = data.map(one => this.createOneDate(one))
+        monthModel.data.forEach(one => {
+            rr.push(this.createOneDate(one));
+        });
         const historyWrap = div({ className: 'history-wrap' });
         appendArray(historyWrap, rr);
         return historyWrap;
@@ -85,14 +86,15 @@ export class History {
                 div({ className: `${detailData.categoryType === "수입" ? "income" : "outcome"}-money` }, detailData.money)));            // 금액
     }
 
-    async createHistory() {
-        const historyWrap = await this.createHistoryWrap();
+    createHistory(monthModel) {
+        const historyWrap = this.createHistoryWrap(monthModel);
         this.historySection.appendChild(historyWrap);
     }
 
-    render() {
+    render(monthModel) {
+
         this.reset();
-        this.createHistory();
+        this.createHistory(monthModel);
 
         return this.historySection;
     }
