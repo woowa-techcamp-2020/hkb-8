@@ -19,7 +19,7 @@ export const clickStatistics = function (e) {
 };
 
 export const clickLeftArrow = function (e) {
-    console.log(e.target.value)
+    console.log("left : " + e.target)
 };
 
 export const clickRightArrow = function (e) {
