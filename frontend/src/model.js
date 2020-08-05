@@ -7,27 +7,39 @@ export default class Model {
         this.store = new Map;
         this.setMonthData(this.selectedMonth);
     }
-    getMonthData(month) {
-        if (!this.store.has(month)) this.setMonthData(month);
+    decreaseMonth() {
+        if (this.selectedMonth === 1) return;
+        this.selectedMonth--;
+        this.setMonthData(this.selectedMonth);
+    }
+    increaseMonth() {
+        if (this.selectedMonth === 12) return;
+        this.selectedMonth++;
+        this.setMonthData(this.selectedMonth);
+    }
+    async getMonthData(month) {
+        month = month !== undefined ? month : this.selectedMonth;
+        if (!this.store.has(month)) await this.setMonthData(month);
         return this.store.get(month);
     }
     async setMonthData(month) {
         const oneMonthData = await this.getServerMonthData(month);
         this.store.set(month, oneMonthData);
+        this.notify();
     }
     async getServerMonthData(month) {
-        const data = await api.get('http://localhost:3000/api/transaction/abc@abc.com/7').then(res => res.json());
+        const data = await api.get(`http://localhost:3000/api/transaction/abc@abc.com/${month}`).then(res => res.json());
         const oneMonthData = new MonthModel(2020, month, data);
         return oneMonthData;
     }
     unsubscribe() {
-
+        this.subscribers.length = 0;
     }
     subscribe(component) {
-        this.subscribers.push(component);
+        this.subscribers = this.subscribers.concat(component);
     }
-    notify() {
-        const data = this.getMonthData(this.selectedMonth);
+    async notify() {
+        const data = await this.getMonthData(this.selectedMonth);
         this.subscribers.forEach(subscriber => subscriber.render(data));
     }
 }
@@ -38,6 +50,18 @@ class MonthModel {
         this.month = month;
         this.data = new Map;
         this.initData(data);
+    }
+    getTotal(day) {
+        const dayData = this.data.get(day);
+        let totalIncome, totalOutcome;
+        if (dayData === undefined) {
+            totalIncome = "";
+            totalOutcome = "";
+        } else {
+            totalIncome = dayData.totalIncome;
+            totalOutcome = dayData.totalOutcome;
+        }
+        return ({ totalIncome, totalOutcome });
     }
     initData(data) {
         let oneDay;
