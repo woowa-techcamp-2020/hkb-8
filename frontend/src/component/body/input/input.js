@@ -3,7 +3,6 @@ import { createEl } from '../../../utils/createElement';
 import { appendArray } from '../../../utils/handleElement';
 import { clickDeleteInputInfoBtn, clickIncomeBtn, clickOutcomeBtn, keyupMoneyInput, clickSubmitBtn } from './inputHandler.js';
 import { div, input, select, option } from '../../../utils/element';
-import { func } from './inputHandler';
 import api from '../../../utils/api';
 
 

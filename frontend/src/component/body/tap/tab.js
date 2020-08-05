@@ -1,8 +1,6 @@
 import './tab.scss';
 import { createEl } from '../../../utils/createElement';
 import { appendArray } from '../../../utils/handleElement';
-import { clickHistory, clickCalender, clickStatistics, clickLeftArrow, clickRightArrow } from './tabHandler';
-import { Calender } from "../../calender/calender";
 
 export class ListTab {
     constructor(router) {
@@ -67,30 +65,26 @@ export class MonthTab {
 
     createMonthTapNodes() {
         this.monthTapWrap = createEl('div', 'month-tap-wrap', '', {});
-        this.leftArrow = createEl('div', 'left-arrow prev', '⇦', { onclick: clickLeftArrow });
         this.selectedMonth = createEl('div', 'selected-month date', `${this.currentMonth}`, {});
 
-        this.rightArrow = createEl('div', 'right-arrow next', '⇨', { onclick: clickRightArrow });
+        this.leftArrow = createEl('div', 'left-arrow prev', '⇦', {});
+        this.rightArrow = createEl('div', 'right-arrow next', '⇨', {});
 
         appendArray(this.monthTapWrap, [this.leftArrow, this.selectedMonth, this.rightArrow]);
         appendArray(this.monthTapSection, [this.monthTapWrap]);
 
         this.leftArrow.addEventListener("click", e => {
-            if(this.currentMonth === 1) return;
-            const calendarComponent = this.router.viewMap.get('/calender');
-            calendarComponent.moveMonth(-1);
-            calendarComponent.renderCalendar();
+            if (this.currentMonth === 1) return;
             this.currentMonth--;
             this.render();
+            window.model.decreaseMonth();
         });
 
         this.rightArrow.addEventListener("click", e => {
-            if(this.currentMonth === 12) return;
-            const calendarComponent = this.router.viewMap.get('/calender');
-            calendarComponent.moveMonth(1);
-            calendarComponent.renderCalendar();
+            if (this.currentMonth === 12) return;
             this.currentMonth++;
             this.render();
+            window.model.increaseMonth();
         });
     }
 
