@@ -1,5 +1,5 @@
 .list-tap-section {
-  width:100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,9 +7,10 @@
 
   .list {
     width: 30%;
-  text-align: center;
+    text-align: center;
+
     div {
-    padding: 10px;
+      padding: 10px;
 
     }
   }
@@ -17,79 +18,82 @@
   .list-tap-wrap {
     display: flex;
     flex-direction: row;
-    width:45%;
+    width: 45%;
     justify-content: space-between;
     align-items: center;
     background-color: lightgray;
     border-radius: 30px;
     padding: 15px;
+    .tap {
+      font-size: 25px;
+
+      &:hover {
+        background-color: white;
+        font-size: 25px;
+        border-radius: 20px;
+
+      }
+
 
     .list-tap-history-wrap {
       width: 30%;
-      text-align:center;
+      text-align: center;
       cursor: pointer;
+
       .list-tap-history {
-        font-size: 25px;
-        //padding: 5px 120px;
-        background-color: white;
-        border-radius: 20px;
-  }
+      }
     }
-
-.list-tap-calender-wrap {
-  width: 30%;
-  text-align:center;
-  cursor: pointer;
-
-  .list-tap-calender {
-    font-size: 25px;
-    //padding: 5px 120px;
-    background-color: white;
-    border-radius: 20px;
   }
-}
 
-.list-tap-statistics-wrap {
-  width: 30%;
-  text-align:center;
-  cursor: pointer;
+  .list-tap-calender-wrap {
+    width: 30%;
+    text-align: center;
+    cursor: pointer;
 
-  .list-tap-statistics {
-    font-size: 25px;
-    //padding: 5px 120px;
-    background-color: white;
-    border-radius: 20px;
+    .list-tap-calender {
+    }
   }
-}
+
+  .list-tap-statistics-wrap {
+    width: 30%;
+    text-align: center;
+    cursor: pointer;
+
+    .list-tap-statistics {
+    }
+  }
 
 }
+
 }
 
 .month-tap-section {
-width:100%;
-display: flex;
-justify-content: center;
-align-items: center;
-margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
 
-.month-tap-wrap {
-display: flex;
-flex-direction: row;
-width:40%;
-justify-content: center;
+  .month-tap-wrap {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    justify-content: center;
 
-.left-arrow {
-  font-size: 30px;
-  margin-right: 10px;
-  cursor: pointer;
-}
-.selected-month {
-  font-size: 30px;
-}
-.right-arrow {
-  font-size: 30px;
-  margin-left: 10px;
-  cursor: pointer;
-}
-}
+    .left-arrow {
+      font-size: 30px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .selected-month {
+      font-size: 30px;
+    }
+
+    .right-arrow {
+      font-size: 30px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
 }
