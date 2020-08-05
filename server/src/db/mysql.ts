@@ -17,7 +17,7 @@ async function insertOneData(insertQuery: string, values: any[]) {
         .execute<ResultSetHeader>(insertQuery, values)
         .then(([rows, fields]) => {
             if (rows.affectedRows === 0) return false;
-            return true;
+            return rows.insertId;
         });
 }
 

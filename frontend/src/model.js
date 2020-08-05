@@ -7,6 +7,10 @@ export default class Model {
         this.store = new Map;
         this.setMonthData(this.selectedMonth);
     }
+    async addNewPaymentRecord({ dateText, category, paymentMethod, money, content }) {
+        const result = await api.post(`http://localhost:3000/api/transaction/1/${this.selectedMonth}`, { dateText, category, paymentMethod, money, content });
+        this.setMonthData(this.selectedMonth);
+    }
     decreaseMonth() {
         if (this.selectedMonth === 1) return;
         this.selectedMonth--;
@@ -24,7 +28,7 @@ export default class Model {
     }
     async setMonthData(month) {
         const oneMonthData = await this.getServerMonthData(month);
-        this.store.set(month, oneMonthData);
+        await this.store.set(month, oneMonthData);
         this.notify();
     }
     async getServerMonthData(month) {
