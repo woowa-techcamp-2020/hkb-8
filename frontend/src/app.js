@@ -1,7 +1,10 @@
 import './app.scss';
 import Router from './router';
+import Model from './model';
+
 import { Header } from './component/header/header';
 import { Body } from './component/body/body';
+
 import { ListTab, MonthTab } from './component/body/tap/tab';
 
 import HistoryComponent from './app/app';
@@ -18,10 +21,16 @@ const DATA = [
     { name: "미분류", percent: "2%", money: 9000 },
 ];
 
+// 모델 생성
+const model = new Model();
+window.model = model;
+
 // 라우터 생성
 const app = document.querySelector('#app'); // 최상단 노드
 const router = new Router(app);
 window.router = router;
+
+
 
 // 전역 헤더, 탭 생성
 const header = new Header();
