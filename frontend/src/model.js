@@ -11,6 +11,10 @@ export default class Model {
         const result = await api.post(`http://localhost:3000/api/transaction/1/${this.selectedMonth}`, { dateText, category, paymentMethod, money, content });
         this.setMonthData(this.selectedMonth);
     }
+    async updatePaymentRecord({ recordNo, dateText, category, paymentMethod, money, content }) {
+        const result = await api.put(`http://localhost:3000/api/transaction/1/${this.selectedMonth}`, { recordNo, dateText, category, paymentMethod, money, content });
+        this.setMonthData(this.selectedMonth);
+    }
     decreaseMonth() {
         if (this.selectedMonth === 1) return;
         this.selectedMonth--;
@@ -87,7 +91,7 @@ class MonthModel {
                 preDate = oneDate.getDate()
                 this.data.set(preDate, oneDay);
             }
-            const { categoryType, categoryName, paymentMethodName, money, content } = one;
+            const { categoryType, money } = one;
             if (categoryType === "지출") {
                 oneDay.totalOutcome += parseInt(money);
                 this.totalOutcome += parseInt(money);
@@ -95,7 +99,7 @@ class MonthModel {
                 oneDay.totalIncome += parseInt(money);
                 this.totalIncome += parseInt(money);
             }
-            oneDay.items.push({ categoryType, categoryName, paymentMethodName, money, content });
+            oneDay.items.push(one);
         });
     }
 }

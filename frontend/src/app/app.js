@@ -10,14 +10,17 @@ import { History } from "../component/history/history";
 export default class HistoryComponent {
     constructor() {
         this.baseElement = div();
-        this.inputComponent = new Input();
-        this.historyComponent = new History();
+        this.inputComponent = new Input(this);
+        this.historyComponent = new History(this);
     }
     createElement(monthModel) {
         appendArray(this.baseElement, [
             this.inputComponent.render(monthModel),
             this.historyComponent.render(monthModel)
         ]);
+    }
+    setDataToInput(data) {
+        this.inputComponent.setDataToInputElement(data);
     }
     reset() {
         this.baseElement.innerHTML = "";

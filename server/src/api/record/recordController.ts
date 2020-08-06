@@ -12,10 +12,16 @@ export default {
     addRecord: async function (req: Request, res: Response, next: NextFunction) {
         const { memberNo, month } = req.params;
         const { dateText, category, paymentMethod, money, content } = req.body;
-        console.log({ dateText, category, paymentMethod, money, content });
         const addedNo = await db.insertOneData(query.INSERT_RECORD_TB, [new Date(dateText), memberNo, category, paymentMethod, money, content]);
         const addedInfo = await db.selectData(query.SELECT_ONE_RECORD_TB, [addedNo]);
         res.status(200).json(addedInfo);
+    },
+    updateRecord: async function (req: Request, res: Response, next: NextFunction) {
+        const { memberNo, month } = req.params;
+        const { recordNo, dateText, category, paymentMethod, money, content } = req.body;
+        const updatedNo = await db.updateOne(query.UPDATE_ONE_RECORD, [new Date(dateText), category, paymentMethod, money, content, recordNo]);
+        const updatedInfo = await db.selectData(query.SELECT_ONE_RECORD_TB, [updatedNo]);
+        res.status(200).json(updatedInfo);
     },
     modifyRecord: async function () { },
 };

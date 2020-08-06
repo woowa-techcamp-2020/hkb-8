@@ -63,8 +63,6 @@ const CREATE_RECORD_TB = `
         FOREIGN KEY(member_no) REFERENCES member_tb(no),
         FOREIGN KEY(category_no) REFERENCES category_tb(no),
         FOREIGN KEY(payment_method_no) REFERENCES payment_method_tb(no)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
     );
 `;
 const SELECT_ONE_RECORD_TB = `
@@ -84,8 +82,11 @@ const UPDATE_RECORD_TB = `
 
 const SELECT_RECORD_INFO = `
     select 
-        payment_at as paymentAt, member_tb.email, category_tb.type as categoryType, 
-        category_tb.name as categoryName, payment_method_tb.name as paymentMethodName, 
+        payment_at as paymentAt,
+        record_tb.no as recordNo,
+        member_tb.email,  member_tb.no AS memberNo,
+        category_tb.type as categoryType, category_tb.name as categoryName, category_tb.no as categoryNo,
+        payment_method_tb.name as paymentName, payment_method_tb.no as paymentMethodNo,
         money, content 
     from record_tb
         INNER JOIN member_tb on record_tb.member_no = member_tb.no
@@ -103,7 +104,7 @@ const RESET_TB = `delete from ?`;
 
 const UPDATE_ONE_RECORD = `
     UPDATE record_tb 
-    SET content=?, order_no=?, column_no=? 
+    SET payment_at=?, category_no=?, payment_method_no=?, money=?, content=?
     WHERE no = ?;
 `;
 
