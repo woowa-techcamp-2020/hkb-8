@@ -9,6 +9,13 @@ export default {
         console.log(records);
         res.status(200).json(records);
     },
-    addRecord: async function () {},
-    modifyRecord: async function () {},
+    addRecord: async function (req: Request, res: Response, next: NextFunction) {
+        const { memberNo, month } = req.params;
+        const { dateText, category, paymentMethod, money, content } = req.body;
+        console.log({ dateText, category, paymentMethod, money, content });
+        const addedNo = await db.insertOneData(query.INSERT_RECORD_TB, [new Date(dateText), memberNo, category, paymentMethod, money, content]);
+        const addedInfo = await db.selectData(query.SELECT_ONE_RECORD_TB, [addedNo]);
+        res.status(200).json(addedInfo);
+    },
+    modifyRecord: async function () { },
 };

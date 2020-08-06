@@ -7,6 +7,10 @@ export default class Model {
         this.store = new Map;
         this.setMonthData(this.selectedMonth);
     }
+    async addNewPaymentRecord({ dateText, category, paymentMethod, money, content }) {
+        const result = await api.post(`http://localhost:3000/api/transaction/1/${this.selectedMonth}`, { dateText, category, paymentMethod, money, content });
+        this.setMonthData(this.selectedMonth);
+    }
     decreaseMonth() {
         if (this.selectedMonth === 1) return;
         this.selectedMonth--;
@@ -24,7 +28,7 @@ export default class Model {
     }
     async setMonthData(month) {
         const oneMonthData = await this.getServerMonthData(month);
-        this.store.set(month, oneMonthData);
+        await this.store.set(month, oneMonthData);
         this.notify();
     }
     async getServerMonthData(month) {
@@ -48,10 +52,15 @@ class MonthModel {
     constructor(year, month, data) {
         this.year = year;
         this.month = month;
+        this.totalIncome = 0;
+        this.totalOutcome = 0;
         this.data = new Map;
         this.initData(data);
     }
-    getTotal(day) {
+    getTotal() {
+        return { totalIncome: this.totalIncome, totalOutcome: this.totalOutcome };
+    }
+    getDayTotal(day) {
         const dayData = this.data.get(day);
         let totalIncome, totalOutcome;
         if (dayData === undefined) {
@@ -81,8 +90,10 @@ class MonthModel {
             const { categoryType, categoryName, paymentMethodName, money, content } = one;
             if (categoryType === "지출") {
                 oneDay.totalOutcome += parseInt(money);
+                this.totalOutcome += parseInt(money);
             } else {
                 oneDay.totalIncome += parseInt(money);
+                this.totalIncome += parseInt(money);
             }
             oneDay.items.push({ categoryType, categoryName, paymentMethodName, money, content });
         });
