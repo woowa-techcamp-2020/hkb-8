@@ -13,7 +13,6 @@ export default class HistoryComponent {
         this.inputComponent = new Input();
         this.historyComponent = new History();
         this.totalInOutcome = new TotalInOutcome();
-
     }
     createElement(monthModel) {
         appendArray(this.baseElement, [
@@ -21,6 +20,9 @@ export default class HistoryComponent {
             this.totalInOutcome.render(monthModel),
             this.historyComponent.render(monthModel)
         ]);
+    }
+    setDataToInput(data) {
+        this.inputComponent.setDataToInputElement(data);
     }
     reset() {
         this.baseElement.innerHTML = '';

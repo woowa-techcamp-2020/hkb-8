@@ -48,7 +48,7 @@ const chartComponent = new ChartComponent();
 chartComponent.setData(DATA);
 
 // 첫화면 설정
-router.setPath('/', calenderComponent);
+router.setPath('/', historyComponent);
 
 // 그 외 경로 설정
 router.setPath('/history', historyComponent);

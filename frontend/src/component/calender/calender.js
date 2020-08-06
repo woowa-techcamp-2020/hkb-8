@@ -71,8 +71,6 @@ export class Calender {
 
         for (let i = 1; i <= lastDay; i++) {
             const { totalIncome, totalOutcome } = monthModel.getDayTotal(i);
-            this.calcTotalIncome += totalIncome;
-            this.calcTotalOutcome += totalOutcome;
             if (drawingMonth === currentMonth && i === currentDay) {
                 daysInnerHtml += `<div class="today day"><span class="number">${i}</span>
                         <div class="day-in-put-money">

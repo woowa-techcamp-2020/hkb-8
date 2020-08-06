@@ -34,9 +34,10 @@ async function updateOne(updateQuery: string, values: any[]) {
         .execute<ResultSetHeader>(updateQuery, values)
         .then(([rows, fields]) => {
             if (rows.affectedRows === 0) return false;
-            return true;
+            return rows.insertId;
         });
 }
+
 async function deleteOne(deleteQuery: string, values: any[]) {
     return await pool
         .execute<ResultSetHeader>(deleteQuery, values)
