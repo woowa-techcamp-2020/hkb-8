@@ -1,0 +1,50 @@
+.total-money-section {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //margin-top: 30px;
+  .total-money-wrap {
+    font-size: 18px;
+    .total-income-wrap {
+      margin-bottom: 10px;
+      .total-income-checkbox {
+        margin-right: 15px;
+      }
+
+      .total-income-title {
+        color: #219aff;
+      }
+
+      .total-income-money {
+        display: inline-block;
+        width: 100px;
+        text-align: right;
+        color: #219aff;
+
+      }
+    }
+
+    .total-outcome-wrap {
+      margin-bottom: 20px;
+
+      .total-outcome-checkbox {
+        margin-right: 15px;
+      }
+
+      .total-outcome-title {
+        color: #58c1b6;
+
+      }
+
+      .total-outcome-money {
+        display: inline-block;
+        width: 100px;
+        text-align: right;
+        color: #58c1b6;
+
+
+      }
+    }
+  }
+}

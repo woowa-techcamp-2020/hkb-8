@@ -1,18 +1,17 @@
-import { createEl } from "../../utils/createElement";
-import { div } from "../../utils/element";
-import { appendArray } from "../../utils/handleElement";
-import './calender.scss'
+import { createEl } from '../../utils/createElement';
+import { div } from '../../utils/element';
+import { appendArray } from '../../utils/handleElement';
+import './calender.scss';
 import json from '../../utils/mockData.json';
+import { TotalInOutcome } from '../totalInOutcome/TotalInOutcome';
+
 
 export class Calender {
     constructor() {
         this.calenderSection = createEl('div', 'calender-section', '', {});
         this.date = new Date();
-
-        this.incomeMoneyMap = new Map();
-        this.incomeMoneyMap = json.incomeMoneyObj;
-        this.outcomeMoneyMap = new Map();
         this.monthModel;
+        this.totalMoney = new TotalInOutcome();
     }
     moveMonth(value) {
         this.date.setMonth(this.date.getMonth() + value);
@@ -22,13 +21,6 @@ export class Calender {
         this.calenderSection.innerHTML = '';
     }
 
-    getApiDayData() {
-        // todo: api요청으로 현재 월을 보내서 현재 월에 대한 모든 날짜의 수입, 지출 받아오기
-        // todo: 받아온 데이터를 incomeMoneyMap (key:일수,val:수입금액), outcomeMoneyMap 에 넣기(key:일수,val:지출금액)
-    }
-
-
-
     renderCalendar(monthModel) {
 
         const year = monthModel.year;
@@ -36,7 +28,7 @@ export class Calender {
         const date = new Date(year, month, 1);
 
 
-        const monthDays = this.calenderSection.querySelector(".days");
+        const monthDays = this.calenderSection.querySelector('.days');
 
         const lastDay = new Date(year, month + 1, 0).getDate();
         const prevLastDay = new Date(year, month, 0).getDate();
@@ -56,17 +48,21 @@ export class Calender {
     }
 
     createPrevDays(prevLastDay, firstDayIndex) {
-        console.log(prevLastDay, firstDayIndex);
+        // console.log(prevLastDay, firstDayIndex);
         let prevDay = prevLastDay - firstDayIndex + 1;
-        let daysInnerHtml = "";
+        let daysInnerHtml = '';
         for (prevDay; prevDay <= prevLastDay; prevDay++) {
-            daysInnerHtml += `<div class="prev-date day">${prevDay}</div>`;
+            daysInnerHtml += `<div class="prev-date day">${prevDay}
+                        <div class="day-in-put-money">
+                        <div class="day-income">ㅤ</div>
+                        <div class="day-outcome">ㅤ</div>
+                        </div></div>`;
         }
         return daysInnerHtml;
     }
     createCurrentDays(lastDay, monthModel) {
-        console.log(monthModel);
-        let daysInnerHtml = "";
+        // console.log(monthModel);
+        let daysInnerHtml = '';
         const todayDate = new Date();
         const [currentMonth, currentDay] = [todayDate.getMonth() + 1, todayDate.getDate()];
 
@@ -74,30 +70,37 @@ export class Calender {
         let totalIncome = 0, totalOutcome = 0;
 
         for (let i = 1; i <= lastDay; i++) {
-            const { totalIncome, totalOutcome } = monthModel.getTotal(i);
+            const { totalIncome, totalOutcome } = monthModel.getDayTotal(i);
+            this.calcTotalIncome += totalIncome;
+            this.calcTotalOutcome += totalOutcome;
             if (drawingMonth === currentMonth && i === currentDay) {
-                daysInnerHtml += `<div class="today day">${i}
+                daysInnerHtml += `<div class="today day"><span class="number">${i}</span>
                         <div class="day-in-put-money">
-                        <div class="day-income">${totalIncome || "ㅤ"}</div>
-                        <div class="day-outcome">${totalOutcome || "ㅤ"}</div>
+                        <div class="day-income">${totalIncome || 'ㅤ'}</div>
+                        <div class="day-outcome">${totalOutcome || 'ㅤ'}</div>
                         </div>
                         </div>`;
             } else {
                 daysInnerHtml += `<div class="other-day day">${i}
                         <div class="day-in-put-money">
-                        <div class="day-income">${totalIncome || "ㅤ"}</div>
-                        <div class="day-outcome">${totalOutcome || "ㅤ"}</div>
+                        <div class="day-income">${totalIncome || 'ㅤ'}</div>
+                        <div class="day-outcome">${totalOutcome || 'ㅤ'}</div>
                         </div>
                         </div>`;
             }
         }
         return daysInnerHtml;
     }
+
     createNextDays(nextDays) {
-        let daysInnerHtml = "";
+        let daysInnerHtml = '';
 
         for (let j = 1; j <= nextDays; j++) {
-            daysInnerHtml += `<div class="next-date day">${j}</div>`;
+            daysInnerHtml += `<div class="next-date day">${j}
+                        <div class="day-in-put-money">
+                        <div class="day-income">ㅤ</div>
+                        <div class="day-outcome">ㅤ</div>
+                        </div></div>`;
         }
 
         return daysInnerHtml;
@@ -119,13 +122,14 @@ export class Calender {
         return calenderWrap;
     }
 
-    createCalender() {
-        appendArray(this.calenderSection, [this.createCalenderWrap()]);
+    createCalender(monthModel) {
+        appendArray(this.calenderSection, [this.totalMoney.render(monthModel), this.createCalenderWrap()]);
     }
 
     render(monthData) {
+        // console.log(monthData);
         this.reset();
-        this.createCalender();
+        this.createCalender(monthData);
         this.renderCalendar(monthData);
         return this.calenderSection;
     }
