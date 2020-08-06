@@ -45,12 +45,12 @@ export class History {
         const { memberNo, recordNo, paymentMethodNo, categoryNo, categoryName, categoryType, content, paymentName, money, paymentAt } = detailData;
         return div({ className: 'history-day-item line', dataset: { recordNo, paymentMethodNo, categoryNo, content, paymentAt, money, categoryType } },
             div({ className: 'history-day-item-left' },
-                div({ className: `history-day-${categoryType === "수입" ? "income" : "outcome"}-category` }, categoryName), // 카테고리
+                div({ className: `history-day-${categoryType === '수입' ? 'income' : 'outcome'}-category` }, categoryName), // 카테고리
                 div({ className: 'history-day-content' }, content)),           // 컨텐츠
-            div({ className: 'history-repair', onclick: this.setInfoToInput }, '수정'),
+            div({ className: 'history-repair', onclick: this.setInfoToInput }, '✐'),
             div({ className: 'history-day-item-right' },
                 div({ className: 'payment' }, paymentName),                      // 결제수단
-                div({ className: `${categoryType === "수입" ? "income" : "outcome"}-money` }, numberFormat(money))));            // 금액
+                div({ className: `${categoryType === '수입' ? 'income' : 'outcome'}-money` }, numberFormat(money))));            // 금액
     }
 
     setInfoToInput(e) {

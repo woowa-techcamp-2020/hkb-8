@@ -2,7 +2,7 @@
   width:100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  //align-items: center;
   margin-top: 30px;
   margin-bottom: 30px;
 
@@ -148,5 +148,6 @@
 }
 
 .clicked {
-  background-color: #000;
+  background-color: #d3fffd;
+  color:white;
 }
