@@ -10,9 +10,10 @@ export class Calender {
         this.calenderSection = createEl('div', 'calender-section', '', {});
         this.date = new Date();
         this.monthModel;
-        this.calcTotalIncome = 0;
-        this.calcTotalOutcome = 0;
+        // this.calcTotalIncome = 0;
+        // this.calcTotalOutcome = 0;
         this.TotalMoney = new TotalInOutcome();
+        console.log(this.moveMonth());
     }
     moveMonth(value) {
         this.date.setMonth(this.date.getMonth() + value);
