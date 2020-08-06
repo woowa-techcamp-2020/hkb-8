@@ -6,8 +6,8 @@ export class TotalInOutcome {
     constructor(router) {
         // this.router = router;
         // this.clickedTab = 'history';
-        this.calcTotalIncome;
-        this.calcTotalOutcome;
+        // this.calcTotalIncome;
+        // this.calcTotalOutcome;
         this.totalMoneySection = createEl('div', 'total-money-section', '', {});
 
     }
@@ -24,7 +24,7 @@ export class TotalInOutcome {
             div({className:'total-income-wrap'},
                 input({className:'total-income-checkbox',type:'checkbox'}),
                 span({className:'total-income-title'}, '수입'),
-                span({className:'total-income-money'}, ${this.calcTotalIncome}),
+                span({className:'total-income-money'}, 4000),
             ),
             div({className:'total-outcome-wrap'},
                 input({className:'total-outcome-checkbox',type:'checkbox'}),
