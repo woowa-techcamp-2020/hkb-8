@@ -28,12 +28,13 @@
           display: flex;
           flex-direction: row;
           .day-income {
-            color: #58c1b6;
+            color: #219aff;
+            // #58c1b6;
             margin-right: 10px;
           }
           .day-outcome {
-            color: #219aff;
-
+            color: #58c1b6;
+            // #219aff;
           }
         }
       }
@@ -41,6 +42,13 @@
       .history-day-list-wrap {
         display: flex;
         flex-direction: column;
+
+        .history-day-item.day-income.line.money-hidden {
+          display: none;
+        }
+        .history-day-item.day-outcome.line.money-hidden {
+          display: none;
+        }
 
         .history-day-item {
           display: flex;
@@ -105,6 +113,10 @@
       .line {
         padding: 10px;
         border-bottom: 1px solid darkgray;
+
+        .money-hidden {
+          display: none;
+        }
       }
     }
   }
@@ -116,3 +128,4 @@
     text-align: right;
   }
 }
+

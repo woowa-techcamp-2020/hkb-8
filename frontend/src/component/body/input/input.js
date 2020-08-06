@@ -138,7 +138,6 @@ export class Input {
 
         // recordNo
         const recordNo = inputSection.querySelector('.input-record-no').value;
-        console.log("recordNo : " + recordNo);
 
         // 카테고리
         const category = (this.inputClassification === INCOME_CLICKED)
