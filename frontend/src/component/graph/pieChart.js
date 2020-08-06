@@ -41,8 +41,13 @@ export default class Chart {
     reset() {
         this.areaElement.innerHTML = "";
     }
-    setData(data) {
-        this.data = data.concat().reverse();
+    setData(monthModel) {
+        const { totalOutcome, outcomeCategoryMoney } = monthModel;
+        const result = Object.entries(outcomeCategoryMoney).map(([key, value]) => {
+            return { name: key, percent: `${(value / totalOutcome * 100).toFixed(2)}%`, money: value }
+        });
+        result.sort((a, b) => parseFloat(a.percent) - parseFloat(b.percent));
+        this.data = result;
     }
     makeSvgElement() {
         if (this.data === null) throw "data가 설정되지 않습니다.";

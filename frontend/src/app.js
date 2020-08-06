@@ -45,7 +45,7 @@ router.setBody(bodyComponent);
 const historyComponent = new HistoryComponent();
 const calenderComponent = new CalenderComponent();
 const chartComponent = new ChartComponent();
-chartComponent.setData(DATA);
+// chartComponent.setData(DATA);
 
 // 첫화면 설정
 router.setPath('/', historyComponent);

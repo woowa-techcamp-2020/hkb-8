@@ -24,8 +24,9 @@ export default class ChartComponent {
     reset() {
         this.baseElement.innerHTML = '';
     }
-    render() {
+    render(monthModel) {
         this.reset();
+        this.setData(monthModel);
         this.createElement();
         return this.baseElement;
     }
