@@ -77,7 +77,9 @@ export class Calender {
                         </div>
                         </div>`;
             } else {
-                daysInnerHtml += `<div class="other-day day">${i}
+                const dayIndex = new Date(`2020-${monthModel.month-1}-${i}`).getDay();
+                console.log(monthModel.month, dayIndex);
+                daysInnerHtml += `<div class="other-day day ${dayIndex === 0 ? 'sunday' : '' }">${i}
                         <div class="day-in-put-money">
                         <div class="day-income">${decoNumberFormat(totalIncome, true) || 'ㅤ'}</div>
                         <div class="day-outcome">${decoNumberFormat(totalOutcome, false) || 'ㅤ'}</div>
