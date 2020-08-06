@@ -3,47 +3,11 @@ import { createEl } from '../../utils/createElement';
 import { appendArray } from '../../utils/handleElement';
 import { div, input, select, option } from '../../utils/element';
 import api from '../../utils/api';
-
+import { numberFormat } from '../../utils/etc';
 
 export class History {
     constructor() {
         this.historySection = createEl('div', 'history-section', '', {});
-        this.getData();
-    }
-
-    // 아직 모델이 안만들어져 있어서 모델에서 History 컴포넌트에 데이터를 주입하는 역할을 한다. 추후 삭제 예정
-    async getData() {
-        const data = await api.get('http://localhost:3000/api/transaction/abc@abc.com/7').then(res => res.json());
-        this.setData(data);
-
-        const result = [];
-        let oneDay;
-        let preDate = -1000;
-        data.forEach(one => {
-            const oneDate = new Date(one.paymentAt);
-            if (preDate !== oneDate.getDate()) {
-                oneDay = {
-                    paymentAt: one.paymentAt,
-                    totalIncome: 0,
-                    totalOutcome: 0,
-                    items: [],
-                };
-                preDate = oneDate.getDate();
-                result.push(oneDay);
-            }
-            const { categoryType, categoryName, paymentMethodName, money, content } = one;
-            if (categoryType === "지출") {
-                oneDay.totalOutcome += parseInt(money);
-            } else {
-                oneDay.totalIncome += parseInt(money);
-            }
-            oneDay.items.push({ categoryType, categoryName, paymentMethodName, money, content });
-        });
-        return result;
-    }
-
-    setData(data) {
-        this.data = data;
     }
 
     reset() {
@@ -83,7 +47,7 @@ export class History {
             div({ className: 'history-repair' }, '수정'),
             div({ className: 'history-day-item-right' },
                 div({ className: 'payment' }, detailData.paymentMethodName),                      // 결제수단
-                div({ className: `${detailData.categoryType === "수입" ? "income" : "outcome"}-money` }, detailData.money)));            // 금액
+                div({ className: `${detailData.categoryType === "수입" ? "income" : "outcome"}-money` }, numberFormat(detailData.money))));            // 금액
     }
 
     createHistory(monthModel) {
@@ -92,7 +56,6 @@ export class History {
     }
 
     render(monthModel) {
-
         this.reset();
         this.createHistory(monthModel);
 
