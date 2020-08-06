@@ -1,8 +1,8 @@
 import { createEl } from '../../utils/createElement';
 import { div } from '../../utils/element';
 import { appendArray } from '../../utils/handleElement';
+import { decoNumberFormat } from '../../utils/etc';
 import './calender.scss';
-import json from '../../utils/mockData.json';
 import { TotalInOutcome } from '../totalInOutcome/TotalInOutcome';
 
 
@@ -48,7 +48,6 @@ export class Calender {
     }
 
     createPrevDays(prevLastDay, firstDayIndex) {
-        // console.log(prevLastDay, firstDayIndex);
         let prevDay = prevLastDay - firstDayIndex + 1;
         let daysInnerHtml = '';
         for (prevDay; prevDay <= prevLastDay; prevDay++) {
@@ -61,7 +60,6 @@ export class Calender {
         return daysInnerHtml;
     }
     createCurrentDays(lastDay, monthModel) {
-        // console.log(monthModel);
         let daysInnerHtml = '';
         const todayDate = new Date();
         const [currentMonth, currentDay] = [todayDate.getMonth() + 1, todayDate.getDate()];
@@ -74,15 +72,15 @@ export class Calender {
             if (drawingMonth === currentMonth && i === currentDay) {
                 daysInnerHtml += `<div class="today day"><span class="number">${i}</span>
                         <div class="day-in-put-money">
-                        <div class="day-income">${totalIncome || 'ㅤ'}</div>
-                        <div class="day-outcome">${totalOutcome || 'ㅤ'}</div>
+                        <div class="day-income">${decoNumberFormat(totalIncome, true) || 'ㅤ'}</div>
+                        <div class="day-outcome">${decoNumberFormat(totalOutcome, false) || 'ㅤ'}</div>
                         </div>
                         </div>`;
             } else {
                 daysInnerHtml += `<div class="other-day day">${i}
                         <div class="day-in-put-money">
-                        <div class="day-income">${totalIncome || 'ㅤ'}</div>
-                        <div class="day-outcome">${totalOutcome || 'ㅤ'}</div>
+                        <div class="day-income">${decoNumberFormat(totalIncome, true) || 'ㅤ'}</div>
+                        <div class="day-outcome">${decoNumberFormat(totalOutcome, false) || 'ㅤ'}</div>
                         </div>
                         </div>`;
             }
@@ -125,7 +123,6 @@ export class Calender {
     }
 
     render(monthData) {
-        // console.log(monthData);
         this.reset();
         this.createCalender(monthData);
         this.renderCalendar(monthData);

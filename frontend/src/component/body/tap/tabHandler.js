@@ -18,11 +18,9 @@ export const clickStatistics = function (e) {
 };
 
 export const clickLeftArrow = function (e) {
-    console.log("left : " + e.target);
     model.deacreaseMonth();
 };
 
 export const clickRightArrow = function (e) {
-    console.log("rightArrow");
     model.increaseMonth();
 };

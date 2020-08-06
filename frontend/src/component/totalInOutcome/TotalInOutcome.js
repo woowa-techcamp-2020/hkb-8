@@ -1,6 +1,7 @@
-import {createEl} from '../../utils/createElement';
-import {appendArray} from '../../utils/handleElement';
-import {div, input, span, select} from '../../utils/element';
+import { createEl } from '../../utils/createElement';
+import { appendArray } from '../../utils/handleElement';
+import { div, input, span, select } from '../../utils/element';
+import { numberFormat, decoNumberFormat } from '../../utils/etc';
 import './totalInOutcome.scss';
 
 export class TotalInOutcome {
@@ -23,12 +24,9 @@ export class TotalInOutcome {
         this.isCheckedIncome = !this.isCheckedIncome;
         const dayIncomeMoney = document.querySelectorAll('.day-income');
         const historyLine = document.querySelectorAll('.history-day-item');
-        historyLine.forEach((el) => {
-            console.log(el.firstChild);
 
-        });
         dayIncomeMoney.forEach((el) => {
-            if(this.isCheckedIncome) {
+            if (this.isCheckedIncome) {
                 el.classList.remove('money-hidden');
             } else {
                 el.classList.add('money-hidden');
@@ -40,7 +38,7 @@ export class TotalInOutcome {
         this.isCheckedOutcome = !this.isCheckedOutcome;
         const dayOutcomeMoney = document.querySelectorAll('.day-outcome');
         dayOutcomeMoney.forEach((el) => {
-            if(this.isCheckedOutcome) {
+            if (this.isCheckedOutcome) {
                 el.classList.remove('money-hidden');
             } else {
                 el.classList.add('money-hidden');
@@ -50,15 +48,15 @@ export class TotalInOutcome {
 
     createTotalMoneyWrap(monthModel) {
         const totalMoneyWrap = div({ className: 'total-money-wrap' },
-            div({className:'total-income-wrap'},
-                input({className:'total-income-checkbox', type:'checkbox', checked:this.isCheckedIncome, onclick:this.clickedIncomeCheckboxHandler}),
-                span({className:'total-income-title'}, '수입'),
-                span({className:'total-income-money'}, monthModel.totalIncome),
+            div({ className: 'total-income-wrap' },
+                input({ className: 'total-income-checkbox', type: 'checkbox', checked: this.isCheckedIncome, onclick: this.clickedIncomeCheckboxHandler }),
+                span({ className: 'total-income-title' }, '수입'),
+                span({ className: 'total-income-money' }, decoNumberFormat(monthModel.totalIncome, true)),
             ),
-            div({className:'total-outcome-wrap'},
-                input({className:'total-outcome-checkbox',type:'checkbox', checked:this.isCheckedOutcome, onclick:this.clickedOutcomeCheckboxHandler}),
-                span({className:'total-outcome-title'}, '지출'),
-                span({className:'total-outcome-money'}, monthModel.totalOutcome),
+            div({ className: 'total-outcome-wrap' },
+                input({ className: 'total-outcome-checkbox', type: 'checkbox', checked: this.isCheckedOutcome, onclick: this.clickedOutcomeCheckboxHandler }),
+                span({ className: 'total-outcome-title' }, '지출'),
+                span({ className: 'total-outcome-money' }, decoNumberFormat(monthModel.totalOutcome, false)),
             ),
         );
 
