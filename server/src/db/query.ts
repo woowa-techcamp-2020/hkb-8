@@ -67,8 +67,15 @@ const CREATE_RECORD_TB = `
         ON DELETE CASCADE
     );
 `;
-
-const INSERT_RECORD_TB = `INSERT INTO record_tb(payment_at, member_no, category_no, payment_method_no, money, content) VALUES(?, ?, ?, ?, ?, ?);`;
+const SELECT_ONE_RECORD_TB = `
+    SELECT 
+        no as recordNo, payment_at as paymentAt, category_no as categoryNo, 
+        payment_method_no as paymentMethodNo, money, content 
+    FROM record_tb WHERE no=? and is_deleted = 0;
+`;
+const INSERT_RECORD_TB = `
+    INSERT INTO record_tb(payment_at, member_no, category_no, payment_method_no, money, content) 
+    VALUES(?, ?, ?, ?, ?, ?);`;
 const UPDATE_RECORD_TB = `
     UPDATE record_tb
     SET payment_at=?, member_no=?, category_no=?, payment_method_no=?, money=?, content=?, is_deleted=?
@@ -121,6 +128,7 @@ export default {
     CREATE_RECORD_TB,
     INSERT_RECORD_TB,
     SELECT_RECORD_INFO,
+    SELECT_ONE_RECORD_TB,
     RESET_TB,
     UPDATE_ONE_RECORD,
     DELETE_ONE_RECORD,

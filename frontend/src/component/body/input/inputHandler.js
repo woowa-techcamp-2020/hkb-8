@@ -1,7 +1,7 @@
 let inputClassification = "수입";
 let inputMoney;
 
-
+// TODO : input에 붙일 것.
 export const clickSubmitBtn = function (e) {
     // 결제 날짜
     const dateText = document.querySelector('.input-date-text').value;
@@ -30,7 +30,7 @@ export const clickSubmitBtn = function (e) {
     console.log(result);
 
     // api로 보내기
-
+    window.model.addNewPaymentRecord(result);
     // 그 이후 결과값 받기
 
     // 모델에 보내야 함. 
@@ -42,6 +42,7 @@ export const clickDeleteInputInfoBtn = function (e) {
 
 export const clickIncomeBtn = function (e) {
     inputClassification = "수입";
+    console.log("in " + inputClassification);
 
     e.target.classList.add('clicked');
     document.querySelector('.classification-outcome').classList.remove('clicked');
@@ -54,6 +55,7 @@ export const clickIncomeBtn = function (e) {
 
 export const clickOutcomeBtn = function (e) {
     inputClassification = "지출";
+    console.log("out " + inputClassification);
 
     e.target.classList.add('clicked');
     document.querySelector('.classification-income').classList.remove('clicked');
