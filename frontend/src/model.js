@@ -52,10 +52,15 @@ class MonthModel {
     constructor(year, month, data) {
         this.year = year;
         this.month = month;
+        this.totalIncome = 0;
+        this.totalOutcome = 0;
         this.data = new Map;
         this.initData(data);
     }
-    getTotal(day) {
+    getTotal() {
+        return { totalIncome: this.totalIncome, totalOutcome: this.totalOutcome };
+    }
+    getDayTotal(day) {
         const dayData = this.data.get(day);
         let totalIncome, totalOutcome;
         if (dayData === undefined) {
@@ -85,8 +90,10 @@ class MonthModel {
             const { categoryType, categoryName, paymentMethodName, money, content } = one;
             if (categoryType === "지출") {
                 oneDay.totalOutcome += parseInt(money);
+                this.totalOutcome += parseInt(money);
             } else {
                 oneDay.totalIncome += parseInt(money);
+                this.totalIncome += parseInt(money);
             }
             oneDay.items.push({ categoryType, categoryName, paymentMethodName, money, content });
         });
