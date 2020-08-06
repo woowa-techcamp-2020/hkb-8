@@ -71,11 +71,13 @@
 
           .day-income {
             margin-bottom: 10px;
-            color: #58c1b6;
-
+            color: #219aff;
           }
           .day-outcome {
-            color: #219aff;
+            color: #58c1b6;
+          }
+          .money-hidden {
+            visibility: hidden;
           }
         }
       }

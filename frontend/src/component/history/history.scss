@@ -28,11 +28,12 @@
           display: flex;
           flex-direction: row;
           .day-income {
-            color: #219aff;
+            color: #58c1b6;
             margin-right: 10px;
           }
           .day-outcome {
-            color: #58c1b6;
+            color: #219aff;
+
           }
         }
       }
@@ -56,7 +57,8 @@
             width: 20%;
             .history-day-income-category {
               padding: 5px;
-              background-color: #85c1b9;
+              background-color: #219aff;
+
               color: white;
               border-radius: 10px;
               margin-right: 10px;
@@ -64,7 +66,7 @@
 
             .history-day-outcome-category {
               padding: 5px;
-              background-color: #219aff;
+              background-color: #85c1b9;
               color: white;
               border-radius: 10px;
               margin-right: 10px;
@@ -90,10 +92,11 @@
               margin-right: 10px;
             }
             .income-money {
-              color: #58c1b6;
+              color: #219aff;
             }
             .outcome-money {
-              color: #219aff;
+              color: #58c1b6;
+
             }
           }
         }
