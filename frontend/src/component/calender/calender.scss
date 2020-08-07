@@ -41,8 +41,13 @@
 
       .day {
         width: 14.28%;
-        margin-bottom: 10px;
+
         padding: 15px 0px;
+
+        .other-date{
+          display: inline-block;
+          padding: 13px 0px 5px;
+        }
 
         &:hover {
           background-color: white;
