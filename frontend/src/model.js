@@ -11,6 +11,10 @@ export default class Model {
         const result = await api.post(`http://localhost:3000/api/transaction/1/${this.selectedMonth}`, { dateText, category, paymentMethod, money, content });
         this.setMonthData(this.selectedMonth);
     }
+    async deletePaymentRecord({ recordNo, memberNo }) {
+        await api.delete(`http://localhost:3000/api/transaction/${memberNo}/${recordNo}`, {});
+        this.setMonthData(this.selectedMonth);
+    }
     async updatePaymentRecord({ recordNo, dateText, category, paymentMethod, money, content }) {
         const result = await api.put(`http://localhost:3000/api/transaction/1/${this.selectedMonth}`, { recordNo, dateText, category, paymentMethod, money, content });
         this.setMonthData(this.selectedMonth);
