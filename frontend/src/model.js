@@ -62,6 +62,8 @@ class MonthModel {
         this.month = month;
         this.totalIncome = 0;
         this.totalOutcome = 0;
+        this.outcomeCategoryMoney = {};
+        this.incomeCategoryMoney = {};
         this.data = new Map;
         this.initData(data);
     }
@@ -84,6 +86,7 @@ class MonthModel {
         let oneDay;
         let preDate = -1000;
         data.forEach(one => {
+
             const oneDate = new Date(one.paymentAt);
             if (preDate !== oneDate.getDate()) {
                 oneDay = {
@@ -95,13 +98,23 @@ class MonthModel {
                 preDate = oneDate.getDate()
                 this.data.set(preDate, oneDay);
             }
-            const { categoryType, money } = one;
+            const { categoryType, categoryName } = one;
+            const money = parseInt(one.money);
+
             if (categoryType === "지출") {
-                oneDay.totalOutcome += parseInt(money);
-                this.totalOutcome += parseInt(money);
+                if (!this.outcomeCategoryMoney[categoryName]) {
+                    this.outcomeCategoryMoney[categoryName] = 0;
+                }
+                this.outcomeCategoryMoney[categoryName] += money;
+                oneDay.totalOutcome += money;
+                this.totalOutcome += money;
             } else {
-                oneDay.totalIncome += parseInt(money);
-                this.totalIncome += parseInt(money);
+                if (!this.incomeCategoryMoney[categoryName]) {
+                    this.incomeCategoryMoney[categoryName] = 0;
+                }
+                this.incomeCategoryMoney[categoryName] += money;
+                oneDay.totalIncome += money;
+                this.totalIncome += money;
             }
             oneDay.items.push(one);
         });

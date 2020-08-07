@@ -30,8 +30,14 @@ export default class BarGraph {
         this.elementArea.className = "bargraph";
         this.data = null;
     }
-    setData(data) {
-        this.data = data;
+    setData(monthModel) {
+
+        const { totalOutcome, outcomeCategoryMoney } = monthModel;
+        const result = Object.entries(outcomeCategoryMoney).map(([key, value]) => {
+            return { name: key, percent: `${(value / totalOutcome * 100).toFixed(2)}%`, money: value }
+        });
+        result.sort((a, b) => parseFloat(b.percent) - parseFloat(a.percent));
+        this.data = result;
     }
     render() {
         // 일단은 elementArea의 style height를 수동으로 잡았지만 추후 변경
