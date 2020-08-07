@@ -55,6 +55,7 @@ export class History {
     }
 
     setInfoToInput(e) {
+
         const dataset = e.target.parentElement.dataset;
         const data = {
             recordNo: dataset.recordno,

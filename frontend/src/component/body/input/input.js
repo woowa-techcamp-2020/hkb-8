@@ -6,8 +6,8 @@ import { numberFormat } from '../../../utils/etc';
 import { div, input, select, option } from '../../../utils/element';
 import api from '../../../utils/api';
 
-const INCOME_CLICKED = "수입";
-const OUTCOME_CLICKED = "지출";
+const INCOME_CLICKED = '수입';
+const OUTCOME_CLICKED = '지출';
 
 export class Input {
     constructor(parent) {
@@ -23,7 +23,7 @@ export class Input {
         this.resetInput = this.resetInput.bind(this);
     }
     async getPaymentMethodData() {
-        const paymentMethods = await api.get("http://localhost:3000/api/payment/method/1").then(res => res.json());
+        const paymentMethods = await api.get('http://localhost:3000/api/payment/method/1').then(res => res.json());
         this.paymentMethods = paymentMethods;
     }
     reset() {
@@ -37,7 +37,9 @@ export class Input {
                         div({ className: 'classification-title title' }, '분류'),
                         div({ className: `classification-income classification-btn ${this.getClicked(INCOME_CLICKED)}`, onclick: this.clickIncomeBtn }, '수입'),
                         div({ className: `classification-outcome classification-btn ${this.getClicked(OUTCOME_CLICKED)}`, onclick: this.clickOutcomeBtn }, '지출')),
-                    div({ className: 'delete-input-info-btn', onclick: this.resetInput }, '내용 지우기')),
+                    div({className:'input-btn-wrap'},
+                        div({ className: 'remove-input-info-btn', onclick: this.removeInput }, '삭제'),
+                        div({ className: 'delete-input-info-btn', onclick: this.resetInput }, '내용 지우기'))),
                 div({ className: 'input-middle' },
                     div({ className: 'input-date-wrap wrap' },
                         input({ type: 'hidden', className: 'input-record-no', value: '', name: 'recordNo' }),
@@ -47,18 +49,18 @@ export class Input {
                         div({ className: 'input-category-title title' }, '카테고리'),
                         select({ className: `input-category-select income-select select ${this.getHidden(INCOME_CLICKED)}` },
                             option({ className: 'option-list', selected: true, disabled: true, hidden: true }, '선택해주세요'),
-                            option({ className: 'option-list', value: "1" }, '월급'),
-                            option({ className: 'option-list', value: "2" }, '용돈'),
-                            option({ className: 'option-list', value: "3" }, '기타수입')),
+                            option({ className: 'option-list', value: '1' }, '월급'),
+                            option({ className: 'option-list', value: '2' }, '용돈'),
+                            option({ className: 'option-list', value: '3' }, '기타수입')),
                         select({ className: `input-category-select outcome-select select ${this.getHidden(OUTCOME_CLICKED)}` },
                             option({ className: 'option-list', selected: true, disabled: true, hidden: true }, '선택해주세요'),
-                            option({ className: 'option-list', value: "4" }, '식비'),
-                            option({ className: 'option-list', value: "5" }, '생활'),
-                            option({ className: 'option-list', value: "6" }, '쇼핑/뷰티'),
-                            option({ className: 'option-list', value: "7" }, '교통'),
-                            option({ className: 'option-list', value: "8" }, '의료/건강'),
-                            option({ className: 'option-list', value: "9" }, '문화/여가'),
-                            option({ className: 'option-list', value: "10" }, '미분류'))
+                            option({ className: 'option-list', value: '4' }, '식비'),
+                            option({ className: 'option-list', value: '5' }, '생활'),
+                            option({ className: 'option-list', value: '6' }, '쇼핑/뷰티'),
+                            option({ className: 'option-list', value: '7' }, '교통'),
+                            option({ className: 'option-list', value: '8' }, '의료/건강'),
+                            option({ className: 'option-list', value: '9' }, '문화/여가'),
+                            option({ className: 'option-list', value: '10' }, '미분류'))
                     ),
                     div({ className: 'input-payment-select-wrap wrap' },
                         div({ className: 'input-payment-select-title title' }, '결제수단'),
@@ -91,7 +93,7 @@ export class Input {
         inputSection.querySelector('.classification-outcome').classList.remove('clicked');
         inputSection.querySelector('.income-select').classList.remove('hidden');
         inputSection.querySelector('.outcome-select').classList.add('hidden');
-    };
+    }
 
     clickOutcomeBtn(e) {
         this.inputClassification = OUTCOME_CLICKED;
@@ -100,7 +102,7 @@ export class Input {
         inputSection.querySelector('.classification-outcome').classList.add('clicked');
         inputSection.querySelector('.income-select').classList.add('hidden');
         inputSection.querySelector('.outcome-select').classList.remove('hidden');
-    };
+    }
 
     setDataToInputElement(data) {
         const inputSection = this.inputSection;
@@ -121,20 +123,25 @@ export class Input {
     }
     resetInput() {
         const inputSection = this.inputSection;
-        inputSection.querySelector('.input-record-no').value = "";
-        inputSection.querySelector('.input-date-text').value = "";
-        inputSection.querySelector('.income-select ').value = "선택해주세요";
-        inputSection.querySelector('.outcome-select').value = "선택해주세요";
-        inputSection.querySelector('.payment-method-select').value = "";
-        inputSection.querySelector('.input-money-text').value = "";
-        inputSection.querySelector('.input-content-text').value = ""
+        inputSection.querySelector('.input-record-no').value = '';
+        inputSection.querySelector('.input-date-text').value = '';
+        inputSection.querySelector('.income-select ').value = '선택해주세요';
+        inputSection.querySelector('.outcome-select').value = '선택해주세요';
+        inputSection.querySelector('.payment-method-select').value = '';
+        inputSection.querySelector('.input-money-text').value = '';
+        inputSection.querySelector('.input-content-text').value = '';
+    }
+
+    removeInput() {
+        const recordNo = document.querySelector('.input-record-no').value;
+        window.model.deletePaymentRecord({recordNo, memberNo: 1});
     }
 
     clickSubmitBtn(e) {
         // 결제 날짜
         const inputSection = this.inputSection;
         const dateText = inputSection.querySelector('.input-date-text').value;
-        if (!dateText) return alert("날짜가 제대로 입력되지 않았습니다.");
+        if (!dateText) return alert('날짜가 제대로 입력되지 않았습니다.');
 
         // recordNo
         const recordNo = inputSection.querySelector('.input-record-no').value;
@@ -144,20 +151,20 @@ export class Input {
             ? inputSection.querySelector('.income-select').value
             : inputSection.querySelector('.outcome-select').value;
 
-        if (category === "선택해주세요") return alert("카테고리를 선택해 주세요");
+        if (category === '선택해주세요') return alert('카테고리를 선택해 주세요');
 
         // 결제 수단
         const paymentMethod = inputSection.querySelector('.payment-method-select').value;
-        if (paymentMethod === "선택해주세요") return alert("결제 수단을 선택해 주세요");
+        if (paymentMethod === '선택해주세요') return alert('결제 수단을 선택해 주세요');
 
         // money
-        const inputMoney = inputSection.querySelector('.input-money-text').value.match(/\d+/g).join("");
+        const inputMoney = inputSection.querySelector('.input-money-text').value.match(/\d+/g).join('');
         const money = parseInt(inputMoney);
-        if (money <= 0 || Number.isNaN(money)) return alert("금액을 입력해 주세요");
+        if (money <= 0 || Number.isNaN(money)) return alert('금액을 입력해 주세요');
 
         // 내용
         const content = inputSection.querySelector('.input-content-text').value.trim();
-        if (!content) return alert("내용을 입력해 주세요");
+        if (!content) return alert('내용을 입력해 주세요');
 
         if (recordNo) {
             window.model.updatePaymentRecord({ recordNo, dateText, category, paymentMethod, money, content });
