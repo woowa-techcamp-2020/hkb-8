@@ -13,8 +13,9 @@
 
   .calendar-wrap {
     display: flex;
+    font-size: 20px;
     flex-direction: column;
-    width: 45%;
+    min-width: 660px;
     background-color: #f0f0f0;
     border-radius: 10px;
 
@@ -60,18 +61,18 @@
           .number {
             line-height: 15px;
             width: 15px;
-            padding: 5px;
+            padding: 13px 11.5px 10px;
             margin: auto;
             background-color: #202020;
             color: white;
-            border-radius: 15px;
+            border-radius: 100%;
           }
 
         .day-in-put-money {
           display: flex;
           flex-direction: column;
           padding-top: 35px;
-          font-size: 15px;
+          font-size: 20px;
 
           .day-income {
             margin-bottom: 10px;

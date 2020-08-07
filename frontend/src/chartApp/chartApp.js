@@ -11,7 +11,6 @@ export default class ChartComponent {
 
         this.piechart = new PieChart();
         this.barGraph = new BarGraph();
-        this.lineGraph = null;  // TODO : 추후 구현
     }
     setData(data) {
         this.piechart.setData(data);

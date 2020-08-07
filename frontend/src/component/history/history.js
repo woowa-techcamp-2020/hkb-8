@@ -77,6 +77,7 @@ export class History {
     }
 
     render(monthModel) {
+        console.log(monthModel);
         this.reset();
         this.createHistory(monthModel);
 
