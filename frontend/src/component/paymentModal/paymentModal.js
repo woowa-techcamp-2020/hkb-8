@@ -22,7 +22,7 @@ export class PaymentModal {
         const paymentModalWrap = div({ className: 'payment-modal-wrap' },
             div({ className: 'payment-modal-header' },
                 div({ className: 'payment-modal-header-top' },
-                    div({ className: 'payment-modal-close-btn' }, 'X')),
+                    div({ className: 'payment-modal-close-btn'}, 'X')),
                 div({ className: 'payment-modal-header-bottom' },
                     div({ className: 'payment-modal-title' }, '결제 수단 관리'))),
             div({ className: 'payment-modal-body' },
