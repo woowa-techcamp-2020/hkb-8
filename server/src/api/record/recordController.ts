@@ -23,5 +23,10 @@ export default {
         const updatedInfo = await db.selectData(query.SELECT_ONE_RECORD_TB, [updatedNo]);
         res.status(200).json(updatedInfo);
     },
+    deleteRecord: async function (req: Request, res: Response, next: NextFunction) {
+        const { memberNo, recordNo } = req.params;
+        await db.deleteOne(query.DELETE_ONE_RECORD, [recordNo]);
+        res.status(200).send();
+    },
     modifyRecord: async function () { },
 };
