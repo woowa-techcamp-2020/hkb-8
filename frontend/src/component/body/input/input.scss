@@ -51,10 +51,22 @@
             
           }
         }
-        .delete-input-info-btn {
-          color:lightseagreen;
-          font-size: 15px;
-          cursor: pointer;
+
+        .input-btn-wrap {
+          display: flex;
+          flex-direction: row;
+          .remove-input-info-btn {
+            color:lightseagreen;
+            font-size: 15px;
+            cursor: pointer;
+            margin-right: 10px;
+            //display: none;
+          }
+          .delete-input-info-btn {
+            color:lightseagreen;
+            font-size: 15px;
+            cursor: pointer;
+          }
         }
       }
       .input-middle {
@@ -148,5 +160,5 @@
 }
 
 .clicked {
-  background-color: #000;
+  background-color: #d6faf7;
 }
