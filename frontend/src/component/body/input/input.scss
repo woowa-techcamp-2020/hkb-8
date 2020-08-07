@@ -10,7 +10,9 @@
   .input-box-wrap {
     display: flex;
     flex-direction: column;
-    width:45%;
+    // width:45%;
+    width: 45%;
+    min-width: 660px;
 
 
     .input-form {
@@ -83,7 +85,8 @@
           flex-grow: 1;
 
           .input-date-title {
-
+            min-width:28px;
+            
           }
           .input-date-text {
             border-bottom:1px solid darkgray;
@@ -149,7 +152,7 @@
       padding: 10px;
       color: white;
       font-weight: 600;
-      border-radius: 0px 0px 5px 5px;
+      border-radius: 10px;
       cursor: pointer;
     }
   }
